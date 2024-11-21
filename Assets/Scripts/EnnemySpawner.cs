@@ -43,6 +43,7 @@ public class EnnemySpawner : MonoBehaviour
     private void OnReleaseEnnemy(Ennemy ennemy)
     {
         ennemy.SetHP(4);
+        ennemy.SetWayPoints(_wayPoints);
         ennemy.gameObject.SetActive(false);
     }
 }

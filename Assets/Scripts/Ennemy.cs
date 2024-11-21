@@ -50,7 +50,7 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 
     public void SetWayPoints(List<Transform> p_wayPoints)
     {
-        wayPoints.Clear();
+        _positionIndex = 0;
         wayPoints = p_wayPoints;
     }
 

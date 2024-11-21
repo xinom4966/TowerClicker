@@ -38,6 +38,12 @@ public class PlacementHandler : MonoBehaviour
         _obstacleNumber++;
         SetPlacementState(PlacementState.Invalid);
     }
+    /*private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isFixed) { return; }
+        _obstacleNumber++;
+        SetPlacementState(PlacementState.Invalid);
+    }*/
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -48,6 +54,15 @@ public class PlacementHandler : MonoBehaviour
             SetPlacementState(PlacementState.Valid);
         }
     }
+    /*private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (isFixed) { return; }
+        _obstacleNumber--;
+        if (_obstacleNumber <= 0)
+        {
+            SetPlacementState(PlacementState.Valid);
+        }
+    }*/
 
     public void SetPlacementState(PlacementState p_state)
     {

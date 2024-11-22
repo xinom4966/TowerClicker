@@ -41,14 +41,13 @@ public class Tower : MonoBehaviour
 
     private void OnGetBullet(Bullet bullet)
     {
-        bullet.gameObject.transform.position = transform.position;
         bullet.gameObject.SetActive(true);
     }
 
     private void OnReleaseBullet(Bullet bullet)
     {
-        bullet.gameObject.transform.position = transform.position;
         bullet.gameObject.SetActive(false);
+        bullet.transform.position = transform.position;
     }
 
     private void Shoot(Ennemy target)

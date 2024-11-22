@@ -37,7 +37,7 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     public void TakeDamage(int damageAmmount)
     {
         _healthPoints -= damageAmmount;
-        if ( _healthPoints < 0)
+        if ( _healthPoints <= 0)
         {
             _pool.Release(this);
         }

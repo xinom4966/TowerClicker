@@ -12,6 +12,7 @@ public class PlacementHandler : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Color _validColor;
     [SerializeField] private Color _invalidColor;
+    [SerializeField] private GameObject _towerRange;
     private Color _fixedColor;
     [HideInInspector] public bool hasValidPlacement;
     [HideInInspector] public bool isFixed;
@@ -52,6 +53,7 @@ public class PlacementHandler : MonoBehaviour
         {
             isFixed = true;
             hasValidPlacement = true;
+            _towerRange.SetActive(true);
         }
         else if (p_state == PlacementState.Valid)
         {

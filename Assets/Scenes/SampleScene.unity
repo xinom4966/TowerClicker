@@ -978,7 +978,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63466188fcf2b64ebae3e7d0487ca54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ennemyPrefab: {fileID: 6386116509033551400, guid: 3a2445be852fd1642a7dbe83b1966d7c, type: 3}
   _spawnRate: 5
   _wayPoints:
   - {fileID: 1517207567}
@@ -986,6 +985,10 @@ MonoBehaviour:
   - {fileID: 1152523928}
   - {fileID: 1476714896}
   - {fileID: 1112333281}
+  _ennemyPrefab: {fileID: 6386116509033551400, guid: 3a2445be852fd1642a7dbe83b1966d7c, type: 3}
+  _ennemySpeed: 1
+  _ennemyAcceleration: 0
+  _spawnAcceleration: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

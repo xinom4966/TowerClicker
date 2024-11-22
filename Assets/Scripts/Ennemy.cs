@@ -4,8 +4,8 @@ using UnityEngine;
 public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 {
     [SerializeField] private int _healthPoints;
-    [SerializeField] private float _speed;
-    public List<Transform> wayPoints;
+    private float _speed;
+    private List<Transform> _wayPoints;
     private int _positionIndex;
     private Pool<Ennemy> _pool;
 
@@ -16,17 +16,17 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 
     private void Move()
     {
-        if (Vector2.Distance(transform.position, wayPoints[_positionIndex].position) < 0.02f)
+        if (Vector2.Distance(transform.position, _wayPoints[_positionIndex].position) < 0.02f)
         {
             _positionIndex++;
-            if (_positionIndex == wayPoints.Count)
+            if (_positionIndex == _wayPoints.Count)
             {
                 _positionIndex = 0;
                 _pool.Release(this);
                 return;
             }
         }
-        transform.position = Vector3.MoveTowards(transform.position, wayPoints[_positionIndex].position, _speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _wayPoints[_positionIndex].position, _speed * Time.deltaTime);
     }
 
     private void OnMouseDown()
@@ -48,10 +48,15 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
         _healthPoints = ammount;
     }
 
+    public void SetSpeed(float newSpeed)
+    {
+        _speed = newSpeed;
+    }
+
     public void SetWayPoints(List<Transform> p_wayPoints)
     {
         _positionIndex = 0;
-        wayPoints = p_wayPoints;
+        _wayPoints = p_wayPoints;
     }
 
     public void SetPool(Pool<Ennemy> pool)

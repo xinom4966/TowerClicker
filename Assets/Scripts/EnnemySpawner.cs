@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EnnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _ennemyPrefab;
-    [SerializeField, Min(0.0f)] private float _spawnRate;
+    [SerializeField] private float _spawnRate;
     [SerializeField] private List<Transform> _wayPoints;
+    [SerializeField] private GameObject _ennemyPrefab;
+    [SerializeField] private float _ennemySpeed;
+    [SerializeField] private float _ennemyAcceleration;
+    [SerializeField] private float _spawnAcceleration;
     private float _timer;
     private Pool<Ennemy> _ennemyPool;
 
@@ -32,18 +35,26 @@ public class EnnemySpawner : MonoBehaviour
         GameObject ennemyGO = Instantiate(_ennemyPrefab);
         Ennemy ennemy = ennemyGO.GetComponent<Ennemy>();
         ennemy.SetWayPoints(_wayPoints);
+        ennemy.SetSpeed(_ennemySpeed);
         return ennemy;
     }
 
     private void OnGetEnnemy(Ennemy ennemy)
     {
+        ennemy.SetHP(4);
+        ennemy.SetWayPoints(_wayPoints);
+        ennemy.SetSpeed(_ennemySpeed);
         ennemy.gameObject.SetActive(true);
     }
 
     private void OnReleaseEnnemy(Ennemy ennemy)
     {
-        ennemy.SetHP(4);
-        ennemy.SetWayPoints(_wayPoints);
         ennemy.gameObject.SetActive(false);
+    }
+
+    public void SpeedUp()
+    {
+        _ennemySpeed *= _ennemyAcceleration;
+        _spawnRate *= _spawnAcceleration;
     }
 }

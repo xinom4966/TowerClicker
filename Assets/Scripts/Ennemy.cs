@@ -1,16 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 {
     [SerializeField] private int _BasehealthPoints;
     [SerializeField] private int _maxHealthPoints;
+    [SerializeField] private float _clickCooldown;
     private int _healthPoints;
     private float _speed;
     private List<Transform> _wayPoints;
     private int _positionIndex;
     private Pool<Ennemy> _pool;
+    private float _nextClick = 0.0f;
 
     private void Start()
     {
@@ -30,6 +33,7 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
             if (_positionIndex == _wayPoints.Count)
             {
                 _positionIndex = 0;
+                SceneManager.LoadScene("LoseScene");
                 _pool.Release(this);
                 return;
             }
@@ -39,7 +43,11 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 
     private void OnMouseDown()
     {
-        TakeDamage(1);
+        if (Time.time >= _nextClick)
+        {
+            TakeDamage(1);
+            _nextClick = Time.time + _clickCooldown;
+        }
     }
 
     public void TakeDamage(int damageAmmount)

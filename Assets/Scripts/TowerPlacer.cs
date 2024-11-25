@@ -35,11 +35,6 @@ public class TowerPlacer : MonoBehaviour
                 _toBuild.SetActive(true);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _toBuild.transform.Rotate(Vector3.forward, 90);
-            }
-
             _mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
             _toBuild.transform.position = new Vector3(_mousePos.x, _mousePos.y, 0);
             if (Input.GetMouseButtonDown(0))

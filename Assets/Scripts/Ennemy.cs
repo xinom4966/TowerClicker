@@ -1,13 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 {
-    [SerializeField] private int _healthPoints;
+    [SerializeField] private int _BasehealthPoints;
+    [SerializeField] private int _maxHealthPoints;
+    private int _healthPoints;
     private float _speed;
     private List<Transform> _wayPoints;
     private int _positionIndex;
     private Pool<Ennemy> _pool;
+
+    private void Start()
+    {
+        _healthPoints = _BasehealthPoints;
+    }
 
     private void Update()
     {
@@ -46,6 +54,15 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     public void SetHP(int ammount)
     {
         _healthPoints = ammount;
+    }
+
+    public void AddHP()
+    {
+        if (_healthPoints >= _maxHealthPoints)
+        {
+            return;
+        }
+        _healthPoints++;
     }
 
     public void SetSpeed(float newSpeed)

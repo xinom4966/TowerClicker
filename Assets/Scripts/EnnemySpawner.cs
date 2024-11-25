@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnnemySpawner : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class EnnemySpawner : MonoBehaviour
     [SerializeField] private float _ennemySpeed;
     [SerializeField] private float _ennemyAcceleration;
     [SerializeField] private float _spawnAcceleration;
+    [SerializeField] private UnityEvent _onKilledEvent;
+    [SerializeField] private float _ennemySpeedCap;
+    [SerializeField] private float _spawnSpeedCap;
     private float _timer;
     private Pool<Ennemy> _ennemyPool;
 
@@ -50,11 +54,19 @@ public class EnnemySpawner : MonoBehaviour
     private void OnReleaseEnnemy(Ennemy ennemy)
     {
         ennemy.gameObject.SetActive(false);
+        _onKilledEvent.Invoke();
     }
 
     public void SpeedUp()
     {
-        _ennemySpeed *= _ennemyAcceleration;
-        _spawnRate *= _spawnAcceleration;
+        if (_ennemySpeed * _ennemyAcceleration <= _ennemySpeedCap)
+        {
+            _ennemySpeed *= _ennemyAcceleration;
+        }
+        if (_spawnRate * _spawnAcceleration >= _spawnSpeedCap)
+        {
+            _spawnRate *= _spawnAcceleration;
+        }
+        _ennemyPrefab.GetComponent<Ennemy>().AddHP();
     }
 }

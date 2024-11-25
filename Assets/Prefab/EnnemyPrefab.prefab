@@ -98,9 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23398ddf1057554384d44ae37824136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthPoints: 4
-  _speed: 1
-  wayPoints: []
+  _BasehealthPoints: 4
+  _maxHealthPoints: 8
 --- !u!61 &736360878188402797
 BoxCollider2D:
   m_ObjectHideFlags: 0

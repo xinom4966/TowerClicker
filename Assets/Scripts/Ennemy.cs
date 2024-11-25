@@ -7,13 +7,11 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 {
     [SerializeField] private int _BasehealthPoints;
     [SerializeField] private int _maxHealthPoints;
-    [SerializeField] private float _clickCooldown;
     private int _healthPoints;
     private float _speed;
     private List<Transform> _wayPoints;
     private int _positionIndex;
     private Pool<Ennemy> _pool;
-    private float _nextClick = 0.0f;
 
     private void Start()
     {
@@ -39,15 +37,6 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
             }
         }
         transform.position = Vector3.MoveTowards(transform.position, _wayPoints[_positionIndex].position, _speed * Time.deltaTime);
-    }
-
-    private void OnMouseDown()
-    {
-        if (Time.time >= _nextClick)
-        {
-            TakeDamage(1);
-            _nextClick = Time.time + _clickCooldown;
-        }
     }
 
     public void TakeDamage(int damageAmmount)

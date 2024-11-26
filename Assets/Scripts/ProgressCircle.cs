@@ -5,15 +5,9 @@ public class ProgressCircle : MonoBehaviour
 {
     private float _maxTimer = 0f;
     private float _currentTimer;
-    private Slider _progressSlider;
     private Player _parent;
     [SerializeField] private Image _fill;
     [SerializeField] private Gradient _gradient;
-
-    private void Start()
-    {
-        _progressSlider = GetComponent<Slider>();
-    }
 
     private void Update()
     {
@@ -23,8 +17,9 @@ public class ProgressCircle : MonoBehaviour
         }
         _currentTimer = _parent.GetCoolDown();
         float ratio = _currentTimer / _maxTimer;
-        _progressSlider.value = 1 - ratio;
+        _fill.fillAmount = ratio;
         _fill.color = _gradient.Evaluate(ratio);
+        transform.position = Input.mousePosition;
         if (_currentTimer <= 0)
         {
             gameObject.SetActive(false);

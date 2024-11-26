@@ -1,12 +1,14 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class TowerPlacer : MonoBehaviour
 {
-    protected GameObject _towerPrefab;
-    protected GameObject _toBuild;
-    protected Camera _camera;
-    protected Vector3 _mousePos;
+    private GameObject _towerPrefab;
+    private GameObject _toBuild;
+    private Camera _camera;
+    private Vector3 _mousePos;
+    [SerializeField] private UnityEvent _onTowerPlaced;
 
     private void Awake()
     {
@@ -46,6 +48,7 @@ public class TowerPlacer : MonoBehaviour
 
                     _towerPrefab = null;
                     _toBuild = null;
+                    _onTowerPlaced.Invoke();
                 }
             }
         }
@@ -55,7 +58,6 @@ public class TowerPlacer : MonoBehaviour
     {
         _towerPrefab = p_prefab;
         PrepareTower();
-        EventSystem.current.SetSelectedGameObject(null);
     }
 
     protected virtual void PrepareTower()

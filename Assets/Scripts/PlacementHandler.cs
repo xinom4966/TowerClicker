@@ -17,7 +17,6 @@ public class PlacementHandler : MonoBehaviour
     [HideInInspector] public bool hasValidPlacement;
     [HideInInspector] public bool isFixed;
     private int _obstacleNumber;
-    private TowerPlacer _towerPlacer;
 
     private void Awake()
     {

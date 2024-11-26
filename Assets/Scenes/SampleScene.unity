@@ -257,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clickCooldown: 1
   _loadingCircle: {fileID: 1356429011}
+  _murderAward: 0
 --- !u!4 &270326038
 Transform:
   m_ObjectHideFlags: 0
@@ -548,9 +549,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1243891502}
+  - component: {fileID: 1243891504}
   - component: {fileID: 1243891503}
   m_Layer: 0
-  m_Name: TowerPlacer
+  m_Name: Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -583,6 +585,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674ac136ceeb4a042914539145b85c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onTowerPlaced:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1243891504}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: EndTransaction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1243891504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243891501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251e8e886976e3a4492a31e64f93f4c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 270326037}
+  _placer: {fileID: 1243891503}
 --- !u!1 &1246926741
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1133,9 +1164,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1243891503}
-        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
-        m_MethodName: SetTowerPrefab
+      - m_Target: {fileID: 1243891504}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: BeginTransaction
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 5949866564364351031, guid: ae6f756d418e3064ba931d2c7863a65d, type: 3}
@@ -1243,6 +1274,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2069768895}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnEnnemyKilled
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 270326037}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnEnnemyKilled
         m_Mode: 1
         m_Arguments:

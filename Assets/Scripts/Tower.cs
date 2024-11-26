@@ -7,6 +7,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private int _damage;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private int _cost;
     private GameObject _instantiatedBullet;
     private Bullet _bulletScript;
     private List<Ennemy> _targetList = new List<Ennemy>();
@@ -74,5 +75,10 @@ public class Tower : MonoBehaviour
         }
         Ennemy targetToRelease = collision.gameObject.GetComponent<Ennemy>();
         _targetList.Remove(targetToRelease);
+    }
+
+    public int GetCost()
+    {
+        return _cost;
     }
 }

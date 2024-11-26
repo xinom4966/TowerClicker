@@ -5,14 +5,17 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _clickCooldown;
     [SerializeField] private ProgressCircle _loadingCircle;
+    [SerializeField] private int _murderAward;
     private float _timer;
     private Vector2 _mousePos;
     private Camera _camera;
+    private int _money;
 
     private void Start()
     {
         _camera = Camera.main;
         _timer = 0.0f;
+        _money = 0;
     }
 
     private void Update()
@@ -44,8 +47,23 @@ public class Player : MonoBehaviour
         hitEnnemy.TakeDamage(1);
     }
 
+    public void OnEnnemyKilled()
+    {
+        _money += _murderAward;
+    }
+
     public float GetCoolDown()
     {
         return _timer;
+    }
+
+    public bool CheckPrice(Tower tower)
+    {
+        return (_money - tower.GetCost() >= 0);
+    }
+
+    public void DoTransaction(int debt)
+    {
+        _money -= debt;
     }
 }

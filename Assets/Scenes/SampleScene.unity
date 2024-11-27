@@ -2717,6 +2717,7 @@ MonoBehaviour:
         m_CallState: 2
   _ennemySpeedCap: 5
   _spawnSpeedCap: 0.5
+  _EnnemyHealth: 4
 --- !u!1 &2069768894
 GameObject:
   m_ObjectHideFlags: 0

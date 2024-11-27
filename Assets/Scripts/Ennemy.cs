@@ -9,13 +9,20 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     [SerializeField] private int _maxHealthPoints;
     private int _healthPoints;
     private float _speed;
+    private float _baseSpeed;
     private List<Transform> _wayPoints;
     private int _positionIndex;
     private Pool<Ennemy> _pool;
+    private bool _isSlowed = false;
 
     private void Start()
     {
         _healthPoints = _BasehealthPoints;
+    }
+
+    private void OnEnable()
+    {
+        _baseSpeed = _speed;
     }
 
     private void Update()
@@ -65,6 +72,24 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     public void SetSpeed(float newSpeed)
     {
         _speed = newSpeed;
+        _isSlowed = false;
+    }
+
+    public void Slow(float slowAmmount)
+    {
+        if (_isSlowed)
+        {
+            return;
+        }
+        _baseSpeed = _speed;
+        _speed *= slowAmmount;
+        _isSlowed = true;
+    }
+
+    public void ResetSpeed()
+    {
+        _speed = _baseSpeed;
+        _isSlowed = false;
     }
 
     public void SetWayPoints(List<Transform> p_wayPoints)

@@ -2,43 +2,29 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour, IpoolInterface<Bullet>
 {
-    private Ennemy _target;
-    private float _speed;
-    private int _damage;
-    private Pool<Bullet> _pool;
+    protected Pool<Bullet> _pool;
+    protected Ennemy _target;
+    protected Tower _towerOrigin;
+    protected float _speed;
+    protected int _damage;
+    protected float _range;
 
-    private void Update()
-    {
-        if (!_target.isActiveAndEnabled)
-        {
-            _pool.Release(this);
-            return;
-        }
-        if (Vector2.Distance(transform.position, _target.transform.position) > 0.1f)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
-        }
-        else
-        {
-            _target.TakeDamage(_damage);
-            _pool.Release(this);
-        }
-    }
-
-    public void SetDatas(Ennemy p_target, float p_speed, int p_damage)
+    public void SetDatas(Ennemy p_target, Tower p_towerOrigin, float p_speed, int p_damage, float p_range)
     {
         _target = p_target;
+        _towerOrigin = p_towerOrigin;
         _speed = p_speed;
         _damage = p_damage;
-    }
-
-    public void SetPool(Pool<Bullet> pool)
-    {
-        _pool = pool;
+        _range = p_range;
     }
 
     public void SetActive(bool active)
     {
         gameObject.SetActive(active);
+    }
+
+    public void SetPool(Pool<Bullet> pool)
+    {
+        _pool = pool;
     }
 }

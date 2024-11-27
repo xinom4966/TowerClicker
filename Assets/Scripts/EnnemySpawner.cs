@@ -14,6 +14,7 @@ public class EnnemySpawner : MonoBehaviour
     [SerializeField] private UnityEvent _onKilledEvent;
     [SerializeField] private float _ennemySpeedCap;
     [SerializeField] private float _spawnSpeedCap;
+    [SerializeField] private int _EnnemyHealth;
     private float _timer;
     private Pool<Ennemy> _ennemyPool;
 
@@ -45,7 +46,7 @@ public class EnnemySpawner : MonoBehaviour
 
     private void OnGetEnnemy(Ennemy ennemy)
     {
-        ennemy.SetHP(4);
+        ennemy.SetHP(_EnnemyHealth);
         ennemy.SetWayPoints(_wayPoints);
         ennemy.SetSpeed(_ennemySpeed);
         ennemy.gameObject.SetActive(true);
@@ -67,6 +68,7 @@ public class EnnemySpawner : MonoBehaviour
         {
             _spawnRate *= _spawnAcceleration;
         }
+        _EnnemyHealth++;
         _ennemyPrefab.GetComponent<Ennemy>().AddHP();
     }
 }

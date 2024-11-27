@@ -57,6 +57,10 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 
     public void SetHP(int ammount)
     {
+        if (ammount > _maxHealthPoints)
+        {
+            return;
+        }
         _healthPoints = ammount;
     }
 

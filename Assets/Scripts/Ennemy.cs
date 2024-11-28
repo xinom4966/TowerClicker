@@ -62,6 +62,8 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
         {
             _goldFeedBack = Instantiate(_goldVisualPrefab);
             _goldFeedBack.GetComponentInChildren<GoldFeedBack>().SetParentPosition(Camera.main.WorldToScreenPoint(transform.position));
+            StopAllCoroutines();
+            _spriteRenderer.color = _baseColor;
             _pool.Release(this);
             return;
         }

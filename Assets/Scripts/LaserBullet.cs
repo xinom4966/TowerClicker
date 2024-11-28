@@ -19,7 +19,7 @@ public class LaserBullet : Bullet
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
         //Rescale en fonction de la distance entre la tour d'origine et l'ennemi visé
-        transform.localScale = new(distance / _towerOrigin.transform.localScale.x, 0.3f, 1);
+        transform.localScale = new(distance / _towerOrigin.transform.localScale.x, 0.2f, 1);
 
         //Fait des dégats toutes les n secondes (n étant _hitRate)
         _timer += Time.deltaTime;

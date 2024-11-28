@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _clickCooldown;
     [SerializeField] private ProgressCircle _loadingCircle;
     [SerializeField] private int _murderAward;
+    [SerializeField] private TextMeshProUGUI _goldDisplay;
     private float _timer;
     private Vector2 _mousePos;
     private Camera _camera;
@@ -47,9 +49,15 @@ public class Player : MonoBehaviour
         hitEnnemy.TakeDamage(1);
     }
 
+    private void UpdateGoldDisplay()
+    {
+        _goldDisplay.text = "gold : " + _money;
+    }
+
     public void OnEnnemyKilled()
     {
         _money += _murderAward;
+        UpdateGoldDisplay();
     }
 
     public float GetCoolDown()
@@ -65,5 +73,6 @@ public class Player : MonoBehaviour
     public void DoTransaction(int debt)
     {
         _money -= debt;
+        _goldDisplay.text = "gold : " + _money;
     }
 }

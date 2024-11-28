@@ -98,4 +98,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _renderer: {fileID: 3147358866878736626}
-  _hitRate: 1
+  _hitRate: 0.25

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,7 +7,13 @@ using UnityEngine.SceneManagement;
 public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 {
     [SerializeField] private int _BasehealthPoints;
-    [SerializeField] private int _maxHealthPoints;
+    //[SerializeField] private int _maxHealthPoints;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Color _damageColor;
+    [SerializeField] private Color _frozenColor;
+    [SerializeField] private GameObject _goldVisualPrefab;
+    private GameObject _goldFeedBack;
+    private Color _baseColor;
     private int _healthPoints;
     private float _speed;
     private float _baseSpeed;
@@ -18,11 +25,13 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     private void Start()
     {
         _healthPoints = _BasehealthPoints;
+        _baseColor = _spriteRenderer.color;
     }
 
     private void OnEnable()
     {
         _baseSpeed = _speed;
+        //_spriteRenderer.color = _baseColor;
     }
 
     private void Update()
@@ -51,26 +60,44 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
         _healthPoints -= damageAmmount;
         if ( _healthPoints <= 0)
         {
+            _goldFeedBack = Instantiate(_goldVisualPrefab);
+            _goldFeedBack.GetComponentInChildren<GoldFeedBack>().SetParentPosition(Camera.main.WorldToScreenPoint(transform.position));
             _pool.Release(this);
+            return;
+        }
+        StartCoroutine(DamageFeedBack());
+    }
+
+    IEnumerator DamageFeedBack()
+    {
+        _spriteRenderer.color = _damageColor;
+        yield return new WaitForSeconds(0.15f);
+        if (_isSlowed)
+        {
+            _spriteRenderer.color = _frozenColor;
+        }
+        else
+        {
+            _spriteRenderer.color = _baseColor;
         }
     }
 
     public void SetHP(int ammount)
     {
-        if (ammount > _maxHealthPoints)
+        /*if (ammount > _maxHealthPoints)
         {
             _healthPoints = _maxHealthPoints;
             return;
-        }
+        }*/
         _healthPoints = ammount;
     }
 
     public void AddHP()
     {
-        if (_healthPoints >= _maxHealthPoints)
+        /*if (_healthPoints >= _maxHealthPoints)
         {
             return;
-        }
+        }*/
         _healthPoints++;
     }
 
@@ -89,12 +116,14 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
         _baseSpeed = _speed;
         _speed *= slowAmmount;
         _isSlowed = true;
+        _spriteRenderer.color = _frozenColor;
     }
 
     public void ResetSpeed()
     {
         _speed = _baseSpeed;
         _isSlowed = false;
+        _spriteRenderer.color = _baseColor;
     }
 
     public void SetWayPoints(List<Transform> p_wayPoints)

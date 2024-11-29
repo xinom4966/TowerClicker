@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _clickCooldown;
-    [SerializeField] private ProgressCircle _loadingCircle;
+    [SerializeField] private LoadingCircle _loadingCircle;
     [SerializeField] private int _murderAward;
     [SerializeField] private TextMeshProUGUI _goldDisplay;
     private float _timer;

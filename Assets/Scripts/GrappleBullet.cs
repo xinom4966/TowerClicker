@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GrappleBullet : Bullet
@@ -16,27 +14,28 @@ public class GrappleBullet : Bullet
         _timer = 0.0f;
     }
 
-    private void OnEnable()
+    private void OnDisable()
     {
         _state = GrappleState.Catching;
+        transform.localScale = Vector3.one;
         _timer = 0.0f;
     }
 
     private void Update()
     {
-        if (_target == null || !_target.isActiveAndEnabled)
+        distance = Vector2.Distance(_target.transform.position, _towerOrigin.transform.position);
+        direction = _target.transform.position - _towerOrigin.transform.position;
+
+        if (_target == null || !_target.isActiveAndEnabled || distance > _range + 1)
         {
             _pool.Release(this);
         }
-
-        distance = Vector2.Distance(_target.transform.position, _towerOrigin.transform.position);
-        direction = _target.transform.position - _towerOrigin.transform.position;
 
         if (_state == GrappleState.Catching)
         {
             transform.localScale = new(Vector2.Lerp(_towerOrigin.transform.position, _target.transform.position, _timer).x, 0.2f, 1);
             transform.position = _towerOrigin.transform.position + direction * _timer;
-            _timer += _speed * Time.deltaTime;
+            _timer += Time.deltaTime;
             if (Vector2.Distance(transform.position + direction/2, _target.transform.position) < 0.1f)
             {
                 _state = GrappleState.Fetching;
@@ -48,10 +47,11 @@ public class GrappleBullet : Bullet
             transform.localScale = new (Vector2.Lerp(_towerOrigin.transform.position, _target.transform.position, _timer).x, 0.2f, 1);
             transform.position = _towerOrigin.transform.position + direction * _timer;
             _target.transform.position = transform.position + direction / 2;
-            _timer -= _speed * Time.deltaTime;
+            _timer -= Time.deltaTime;
             if (Vector2.Distance(_towerOrigin.transform.position, transform.position) < 0.2f)
             {
                 _state = GrappleState.Killing;
+                transform.localScale = Vector3.one;
             }
         }
 

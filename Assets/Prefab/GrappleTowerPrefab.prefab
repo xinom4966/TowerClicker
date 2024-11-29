@@ -301,9 +301,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fireRate: 2
   _damage: 1
-  _bulletSpeed: 2.5
+  _bulletSpeed: 1.5
   _bulletPrefab: {fileID: 8397129957320796675, guid: c1d65f6f48991ca4e9b8f599d36a2369, type: 3}
-  _cost: 5
+  _cost: 2
   _collider: {fileID: 6189542398383918944}
   _slowAmmount: 0
 --- !u!58 &6189542398383918944

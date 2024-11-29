@@ -30,7 +30,7 @@ public class LaserBullet : Bullet
         }
 
         //Despawn le laser si l'ennemi est hors de portée ou mort
-        if (distance > _range || !_target.isActiveAndEnabled)
+        if (distance > _range + 1 || !_target.isActiveAndEnabled)
         {
             _pool.Release(this);
         }

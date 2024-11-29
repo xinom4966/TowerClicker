@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ProgressCircle : MonoBehaviour
+public class LoadingCircle : MonoBehaviour
 {
     private float _maxTimer = 0f;
     private float _currentTimer;

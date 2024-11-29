@@ -34,6 +34,9 @@ public class Tower : MonoBehaviour
             case FreezeBullet:
                 _munition = MunitionType.FreezeBullet;
                 break;
+            case GrappleBullet:
+                _munition = MunitionType.GrappleBullet;
+                break;
         }
         _hasFired = false;
     }
@@ -62,6 +65,13 @@ public class Tower : MonoBehaviour
                 break;
             case MunitionType.FreezeBullet:
                 FreezeEnnemies();
+                break;
+            case MunitionType.GrappleBullet:
+                if (!_hasFired && _targetList.Count > 0)
+                {
+                    Shoot(_targetList[0]);
+                    _hasFired = true;
+                }
                 break;
         }
     }
@@ -136,5 +146,6 @@ public enum MunitionType
 {
     NormalBullet,
     Laser,
-    FreezeBullet
+    FreezeBullet,
+    GrappleBullet
 }

@@ -73,6 +73,6 @@ public class Player : MonoBehaviour
     public void DoTransaction(int debt)
     {
         _money -= debt;
-        _goldDisplay.text = "gold : " + _money;
+        UpdateGoldDisplay();
     }
 }

@@ -987,7 +987,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Price: 5g'
+  m_text: 'Price: 15g'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1339,18 +1339,34 @@ MonoBehaviour:
   _onTowerPlaced:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 432397749}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1243891504}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: EndTransaction
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
+  _onPlacementCanceled:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1243891504}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: CancelTransaction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _goldFeedbackPrefab: {fileID: 5814682660656758562, guid: 47152b054fa92a14ca68ddba60d731ea, type: 3}
 --- !u!114 &1243891504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1670,7 +1686,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Price: 5g'
+  m_text: 'Price: 25g'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

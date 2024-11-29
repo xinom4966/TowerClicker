@@ -26,5 +26,11 @@ public class Shop : MonoBehaviour
     public void EndTransaction()
     {
         _player.DoTransaction(_playerDebt);
+        _playerDebt = 0;
+    }
+
+    public void CancelTransaction()
+    {
+        _playerDebt = 0;
     }
 }

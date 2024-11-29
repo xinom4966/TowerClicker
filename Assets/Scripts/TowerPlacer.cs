@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -8,7 +9,10 @@ public class TowerPlacer : MonoBehaviour
     private GameObject _toBuild;
     private Camera _camera;
     private Vector3 _mousePos;
+    private GameObject _goldFeedback;
     [SerializeField] private UnityEvent _onTowerPlaced;
+    [SerializeField] private UnityEvent _onPlacementCanceled;
+    [SerializeField] private GameObject _goldFeedbackPrefab;
 
     private void Awake()
     {
@@ -25,6 +29,7 @@ public class TowerPlacer : MonoBehaviour
                 Destroy(_toBuild);
                 _toBuild = null;
                 _towerPrefab = null;
+                _onPlacementCanceled.Invoke();
                 return;
             }
 
@@ -49,6 +54,8 @@ public class TowerPlacer : MonoBehaviour
                     _towerPrefab = null;
                     _toBuild = null;
                     _onTowerPlaced.Invoke();
+                    _goldFeedback = Instantiate(_goldFeedbackPrefab);
+                    _goldFeedback.GetComponentInChildren<GoldFeedBack>().SetParentPosition(Camera.main.WorldToScreenPoint(handler.transform.position), handler.GetComponentInChildren<Tower>().GetCost());
                 }
             }
         }

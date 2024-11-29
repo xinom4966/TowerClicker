@@ -303,8 +303,9 @@ MonoBehaviour:
   _damage: 1
   _bulletSpeed: 10
   _bulletPrefab: {fileID: 8397129957320796675, guid: f5e2274476d43df41ac974ed9752090d, type: 3}
-  _cost: 5
+  _cost: 25
   _collider: {fileID: 6189542398383918944}
+  _slowAmmount: 0
 --- !u!58 &6189542398383918944
 CircleCollider2D:
   m_ObjectHideFlags: 0

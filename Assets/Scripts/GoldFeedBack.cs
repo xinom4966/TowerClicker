@@ -18,7 +18,7 @@ public class GoldFeedBack : MonoBehaviour
         _rectTransform.position += Vector3.up;
     }
 
-    public void SetParentPosition(Vector3 parentPosition, int valueToDisplay)
+    public void SetDatas(Vector3 parentPosition, int valueToDisplay)
     {
         _rectTransform.position = parentPosition;
         _goldText.text += valueToDisplay + " gold";

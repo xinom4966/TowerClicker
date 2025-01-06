@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _numberToKillBeforeSpeedUp;
     [SerializeField] private UnityEvent _SpeedUpEvent;
     [SerializeField] private TextMeshProUGUI _scoreDisplay;
+    [SerializeField] private ProgressGauge _gauge;
     private int _counter = 0;
     private int _score = 0;
 
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     {
         _counter++;
         _score++;
+        _gauge.SetFillAmmount((float)_counter / (float)_numberToKillBeforeSpeedUp);
         if (_counter >= _numberToKillBeforeSpeedUp)
         {
             _SpeedUpEvent.Invoke();

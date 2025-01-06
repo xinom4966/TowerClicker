@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 {
     [SerializeField] private int _BasehealthPoints;
-    //[SerializeField] private int _maxHealthPoints;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Color _damageColor;
     [SerializeField] private Color _frozenColor;

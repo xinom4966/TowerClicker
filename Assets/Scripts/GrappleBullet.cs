@@ -21,6 +21,13 @@ public class GrappleBullet : Bullet
         _timer = 0.0f;
     }
 
+    private void OnEnable()
+    {
+        _state = GrappleState.Catching;
+        transform.localScale = Vector3.one;
+        _timer = 0.0f;
+    }
+
     private void Update()
     {
         distance = Vector2.Distance(_target.transform.position, _towerOrigin.transform.position);

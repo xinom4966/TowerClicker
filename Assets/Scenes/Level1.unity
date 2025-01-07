@@ -991,51 +991,6 @@ Transform:
   - {fileID: 1112333281}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &781278171
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 781278173}
-  - component: {fileID: 781278172}
-  m_Layer: 0
-  m_Name: Test
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &781278172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781278171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8134606662b5b4d4894546b4fb1d4f71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _levelsCount: 3
---- !u!4 &781278173
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781278171}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.022323271, y: 0.40833923, z: -0.020053985}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &993388677
 GameObject:
   m_ObjectHideFlags: 0
@@ -4221,21 +4176,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _lossEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2069768895}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnLose
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   _ennemySpeedCap: 7.5
   _spawnSpeedCap: 0.25
   _EnnemyHealth: 4
@@ -4402,7 +4342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b9d6edc347827428bbe17a1f4f9d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelNumber: 0
   _numberToKillBeforeSpeedUp: 5
   _SpeedUpEvent:
     m_PersistentCalls:
@@ -4450,4 +4389,3 @@ SceneRoots:
   - {fileID: 2069768896}
   - {fileID: 270326038}
   - {fileID: 1289030414}
-  - {fileID: 781278173}

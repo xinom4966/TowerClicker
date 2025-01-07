@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private int _levelNumber;
     [SerializeField] private int _numberToKillBeforeSpeedUp;
     [SerializeField] private UnityEvent _SpeedUpEvent;
     [SerializeField] private TextMeshProUGUI _scoreDisplay;
@@ -23,5 +24,10 @@ public class GameManager : MonoBehaviour
             _numberToKillBeforeSpeedUp += 5;
         }
         _scoreDisplay.text = "score : " + _score;
+    }
+
+    public void OnLose()
+    {
+        ScoreManager.Instance.AddScoreToBoard(_score, _levelNumber);
     }
 }

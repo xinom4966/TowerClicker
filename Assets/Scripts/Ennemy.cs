@@ -11,6 +11,7 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     [SerializeField] private Color _damageColor;
     [SerializeField] private Color _frozenColor;
     [SerializeField] private GameObject _goldVisualPrefab;
+    public UnityEvent _onLoseEvent;
     private GameObject _goldFeedBack;
     private Color _baseColor;
     private int _healthPoints;
@@ -46,6 +47,7 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
             if (_positionIndex == _wayPoints.Count)
             {
                 _positionIndex = 0;
+                _onLoseEvent.Invoke();
                 SceneManager.LoadScene("LoseScene");
                 _pool.Release(this);
                 return;

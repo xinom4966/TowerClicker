@@ -24,7 +24,7 @@ public class ProgressGauge : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             _speedUpWarning.gameObject.SetActive(!_speedUpWarning.gameObject.activeSelf);
         }
     }

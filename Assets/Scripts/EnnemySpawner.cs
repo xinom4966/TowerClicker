@@ -12,6 +12,7 @@ public class EnnemySpawner : MonoBehaviour
     [SerializeField] private float _ennemyAcceleration;
     [SerializeField] private float _spawnAcceleration;
     [SerializeField] private UnityEvent _onKilledEvent;
+    [SerializeField] private UnityEvent _lossEvent;
     [SerializeField] private float _ennemySpeedCap;
     [SerializeField] private float _spawnSpeedCap;
     [SerializeField] private int _EnnemyHealth;
@@ -41,6 +42,7 @@ public class EnnemySpawner : MonoBehaviour
         Ennemy ennemy = ennemyGO.GetComponent<Ennemy>();
         ennemy.SetWayPoints(_wayPoints);
         ennemy.SetSpeed(_ennemySpeed);
+        ennemy._onLoseEvent.AddListener(InvokeLossEvent);
         return ennemy;
     }
 
@@ -70,5 +72,10 @@ public class EnnemySpawner : MonoBehaviour
         }
         _EnnemyHealth++;
         _ennemyPrefab.GetComponent<Ennemy>().AddHP();
+    }
+
+    private void InvokeLossEvent()
+    {
+        _lossEvent.Invoke();
     }
 }

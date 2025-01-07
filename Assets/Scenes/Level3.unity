@@ -4523,6 +4523,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _lossEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _ennemySpeedCap: 7.5
   _spawnSpeedCap: 0.25
   _EnnemyHealth: 4
@@ -4689,6 +4692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b9d6edc347827428bbe17a1f4f9d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelNumber: 0
   _numberToKillBeforeSpeedUp: 5
   _SpeedUpEvent:
     m_PersistentCalls:

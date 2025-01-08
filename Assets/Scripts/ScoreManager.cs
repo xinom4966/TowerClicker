@@ -43,4 +43,9 @@ public class ScoreManager : MonoBehaviour
     {
         return _scoreBoard[_lastRegisteredInd];
     }
+
+    public int GetLastRegisteredInd()
+    {
+        return _lastRegisteredInd;
+    }
 }

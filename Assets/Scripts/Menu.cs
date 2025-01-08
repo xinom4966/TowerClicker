@@ -2,17 +2,31 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Menu : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreDisplay;
+    private int _lastLevelInd;
+    [SerializeField] private MenuType _menuType;
 
     private void Start()
     {
-        List<int> scores = ScoreManager.Instance.GetScores();
-        foreach (int score in scores)
+        if (_menuType == MenuType.LoseMenu)
         {
-            _scoreDisplay.text += "\n" + score;
+            List<int> scores = ScoreManager.Instance.GetScores();
+            for (int i = 0; i < 10; i++)
+            {
+                if (i < scores.Count)
+                {
+                    _scoreDisplay.text += "\n" + scores[i];
+                }
+            }
+            /*foreach (int score in scores)
+            {
+                _scoreDisplay.text += "\n" + score;
+            }*/
+            _lastLevelInd = ScoreManager.Instance.GetLastRegisteredInd();
         }
     }
 
@@ -24,5 +38,16 @@ public class Menu : MonoBehaviour
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(_lastLevelInd);
+    }
+
+    enum MenuType
+    {
+        MainMenu,
+        LoseMenu
     }
 }

@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5e219859d1cbb49a50f617bf84ff3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boidPrefab: {fileID: 0}
+  boidPrefab: {fileID: 1797849415313285675, guid: 56f1dea4fbe4b6548aa07efe61206d7a, type: 3}
   numberOf: 10
   settings:
-    alignment: 3.79
+    alignment: 275.4
     avoidance: 193.3
     cohesion: 1.76
     attraction: 2250

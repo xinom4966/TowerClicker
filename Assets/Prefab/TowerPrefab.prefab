@@ -163,7 +163,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5320754, g: 0.5320754, b: 0.5320754, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -305,6 +305,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 8397129957320796675, guid: 77f28efe96af3ac42a1dca7cf9a157b7, type: 3}
   _cost: 5
   _collider: {fileID: 6189542398383918944}
+  _slowAmmount: 0
 --- !u!58 &6189542398383918944
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -33,15 +33,6 @@ public class TowerPlacer : MonoBehaviour
                 return;
             }
 
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                _toBuild.SetActive(false);
-            }
-            else
-            {
-                _toBuild.SetActive(true);
-            }
-
             _mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
             _toBuild.transform.position = new Vector3(_mousePos.x, _mousePos.y, 0);
             if (Input.GetMouseButtonDown(0))
@@ -79,5 +70,6 @@ public class TowerPlacer : MonoBehaviour
         PlacementHandler handler = _toBuild.GetComponent<PlacementHandler>();
         handler.isFixed = false;
         handler.SetPlacementState(PlacementState.Valid);
+        _toBuild.SetActive(true);
     }
 }

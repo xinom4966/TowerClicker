@@ -21,6 +21,7 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     private int _positionIndex;
     private Pool<Ennemy> _pool;
     private bool _isSlowed = false;
+    private bool _isGrappled = false;
 
     private void Start()
     {
@@ -31,6 +32,7 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     private void OnEnable()
     {
         _baseSpeed = _speed;
+        _isGrappled = false;
         //_spriteRenderer.color = _baseColor;
     }
 
@@ -143,5 +145,15 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     public void SetActive(bool active)
     {
         gameObject.SetActive(active);
+    }
+
+    public void Grapple()
+    {
+        _isGrappled = true;
+    }
+
+    public bool CheckIsGrappled()
+    {
+        return _isGrappled;
     }
 }

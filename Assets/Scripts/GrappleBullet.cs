@@ -40,11 +40,16 @@ public class GrappleBullet : Bullet
 
         if (_state == GrappleState.Catching)
         {
+            if (_target.CheckIsGrappled())
+            {
+                _pool.Release(this);
+            }
             transform.localScale = new(Vector2.Lerp(_towerOrigin.transform.position, _target.transform.position, _timer).x, 0.2f, 1);
             transform.position = _towerOrigin.transform.position + direction * _timer;
             _timer += Time.deltaTime;
             if (Vector2.Distance(transform.position + direction/2, _target.transform.position) < 0.1f)
             {
+                _target.Grapple();
                 _state = GrappleState.Fetching;
             }
         }

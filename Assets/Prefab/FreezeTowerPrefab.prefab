@@ -303,7 +303,7 @@ MonoBehaviour:
   _damage: 1
   _bulletSpeed: 10
   _bulletPrefab: {fileID: 3322055689744000115, guid: 7924d88af115a5b45870207f5a10c413, type: 3}
-  _cost: 15
+  _cost: 30
   _collider: {fileID: 6189542398383918944}
   _slowAmmount: 0.5
 --- !u!58 &6189542398383918944

@@ -49,7 +49,6 @@ public class GrappleBullet : Bullet
             _timer += Time.deltaTime;
             if (Vector2.Distance(transform.position + direction/2, _target.transform.position) < 0.1f)
             {
-                _target.Grapple();
                 _state = GrappleState.Fetching;
             }
         }
@@ -59,6 +58,7 @@ public class GrappleBullet : Bullet
             transform.localScale = new (Vector2.Lerp(_towerOrigin.transform.position, _target.transform.position, _timer).x, 0.2f, 1);
             transform.position = _towerOrigin.transform.position + direction * _timer;
             _target.transform.position = transform.position + direction / 2;
+            _target.Grapple();
             _timer -= Time.deltaTime;
             if (Vector2.Distance(_towerOrigin.transform.position, transform.position) < 0.2f)
             {

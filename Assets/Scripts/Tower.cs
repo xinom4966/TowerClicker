@@ -136,11 +136,6 @@ public class Tower : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
-    {
-        Destroy(transform.parent.gameObject);
-    }
-
     public int GetCost()
     {
         return _cost;

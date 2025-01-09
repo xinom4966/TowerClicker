@@ -12,6 +12,7 @@ public class Menu : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1.0f;
         if (_menuType == MenuType.LoseMenu)
         {
             List<int> scores = ScoreManager.Instance.GetScores();
@@ -22,10 +23,6 @@ public class Menu : MonoBehaviour
                     _scoreDisplay.text += "\n" + scores[i];
                 }
             }
-            /*foreach (int score in scores)
-            {
-                _scoreDisplay.text += "\n" + score;
-            }*/
             _lastLevelInd = ScoreManager.Instance.GetLastRegisteredInd();
         }
     }

@@ -21,7 +21,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < _levelsCount; i++)
+        for (int i = 0; i <= _levelsCount; i++)
         {
             _scoreBoard.Add(new List<int>());
         }

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ProgressGauge _gauge;
     private int _counter = 0;
     private int _score = 0;
+    private bool _isFastForward = false;
 
     public void OnEnnemyKilled()
     {
@@ -29,5 +30,18 @@ public class GameManager : MonoBehaviour
     public void OnLose()
     {
         ScoreManager.Instance.AddScoreToBoard(_score, _levelNumber);
+    }
+
+    public void FastForward()
+    {
+        _isFastForward = !_isFastForward;
+        if (_isFastForward)
+        {
+            Time.timeScale *= 3;
+        }
+        else
+        {
+            Time.timeScale /= 3;
+        }
     }
 }

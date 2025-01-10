@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class TowerPlacer : MonoBehaviour
 {
-    protected GameObject _towerPrefab;
-    protected GameObject _toBuild;
-    protected Camera _camera;
-    protected Vector3 _mousePos;
+    private GameObject _towerPrefab;
+    private GameObject _toBuild;
+    private Camera _camera;
+    private Vector3 _mousePos;
+    private GameObject _goldFeedback;
+    [SerializeField] private UnityEvent _onTowerPlaced;
+    [SerializeField] private UnityEvent _onPlacementCanceled;
+    [SerializeField] private GameObject _goldFeedbackPrefab;
 
     private void Awake()
     {
@@ -25,21 +27,8 @@ public class TowerPlacer : MonoBehaviour
                 Destroy(_toBuild);
                 _toBuild = null;
                 _towerPrefab = null;
+                _onPlacementCanceled.Invoke();
                 return;
-            }
-
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                _toBuild.SetActive(false);
-            }
-            else
-            {
-                _toBuild.SetActive(true);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _toBuild.transform.Rotate(Vector3.forward, 90);
             }
 
             _mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
@@ -53,6 +42,9 @@ public class TowerPlacer : MonoBehaviour
 
                     _towerPrefab = null;
                     _toBuild = null;
+                    _onTowerPlaced.Invoke();
+                    _goldFeedback = Instantiate(_goldFeedbackPrefab);
+                    _goldFeedback.GetComponentInChildren<GoldFeedBack>().SetDatas(Camera.main.WorldToScreenPoint(handler.transform.position), handler.GetComponentInChildren<Tower>().GetCost());
                 }
             }
         }
@@ -62,7 +54,6 @@ public class TowerPlacer : MonoBehaviour
     {
         _towerPrefab = p_prefab;
         PrepareTower();
-        EventSystem.current.SetSelectedGameObject(null);
     }
 
     protected virtual void PrepareTower()
@@ -77,5 +68,6 @@ public class TowerPlacer : MonoBehaviour
         PlacementHandler handler = _toBuild.GetComponent<PlacementHandler>();
         handler.isFixed = false;
         handler.SetPlacementState(PlacementState.Valid);
+        _toBuild.SetActive(true);
     }
 }

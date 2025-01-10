@@ -33,7 +33,6 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     {
         _baseSpeed = _speed;
         _isGrappled = false;
-        //_spriteRenderer.color = _baseColor;
     }
 
     private void Update()
@@ -89,20 +88,11 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 
     public void SetHP(int ammount)
     {
-        /*if (ammount > _maxHealthPoints)
-        {
-            _healthPoints = _maxHealthPoints;
-            return;
-        }*/
         _healthPoints = ammount;
     }
 
     public void AddHP()
     {
-        /*if (_healthPoints >= _maxHealthPoints)
-        {
-            return;
-        }*/
         _healthPoints++;
     }
 

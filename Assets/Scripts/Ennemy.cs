@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 {
@@ -11,6 +12,8 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     [SerializeField] private Color _damageColor;
     [SerializeField] private Color _frozenColor;
     [SerializeField] private GameObject _goldVisualPrefab;
+    [SerializeField] private Image _healthbar;
+    [SerializeField] private Gradient _hpGradient;
     public UnityEvent _onLoseEvent;
     private GameObject _goldFeedBack;
     private Color _baseColor;
@@ -27,12 +30,18 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     {
         _healthPoints = _BasehealthPoints;
         _baseColor = _spriteRenderer.color;
+        float ratio = (float)_healthPoints / (float)_BasehealthPoints;
+        _healthbar.fillAmount = ratio;
+        _healthbar.color = _hpGradient.Evaluate(ratio);
     }
 
     private void OnEnable()
     {
         _baseSpeed = _speed;
         _isGrappled = false;
+        float ratio = (float)_healthPoints / (float)_BasehealthPoints;
+        _healthbar.fillAmount = ratio;
+        _healthbar.color = _hpGradient.Evaluate(ratio);
     }
 
     private void Update()
@@ -60,6 +69,9 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     public void TakeDamage(int damageAmmount)
     {
         _healthPoints -= damageAmmount;
+        float ratio = (float)_healthPoints / (float)_BasehealthPoints;
+        _healthbar.fillAmount = ratio;
+        _healthbar.color = _hpGradient.Evaluate(ratio);
         if ( _healthPoints <= 0)
         {
             _goldFeedBack = Instantiate(_goldVisualPrefab);
@@ -89,11 +101,13 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
     public void SetHP(int ammount)
     {
         _healthPoints = ammount;
+        _BasehealthPoints = ammount;
     }
 
     public void AddHP()
     {
         _healthPoints++;
+        _BasehealthPoints++;
     }
 
     public void SetSpeed(float newSpeed)

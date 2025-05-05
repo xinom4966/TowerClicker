@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1797849415313285675}
   - component: {fileID: 1762573160619713515}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Neco
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

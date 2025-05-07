@@ -112,6 +112,7 @@ public class Ennemy : MonoBehaviour, IpoolInterface<Ennemy>
 
     public void SetSpeed(float newSpeed)
     {
+        _baseSpeed = _speed;
         _speed = newSpeed;
         _isSlowed = false;
     }

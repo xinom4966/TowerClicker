@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class WipeAbility : Ability
 {
-    [SerializeField] private float _range = 100;
+    [SerializeField] private float _range = 1000;
     private List<Collider2D> _colliders = new List<Collider2D>();
     protected override void Update()
     {

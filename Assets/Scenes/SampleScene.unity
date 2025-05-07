@@ -473,8 +473,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 463971499}
-        m_TargetAssemblyTypeName: Ability, Assembly-CSharp
+      - m_Target: {fileID: 463971500}
+        m_TargetAssemblyTypeName: WipeAbility, Assembly-CSharp
         m_MethodName: Execute
         m_Mode: 1
         m_Arguments:
@@ -1140,7 +1140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 463971498}
-  - component: {fileID: 463971499}
+  - component: {fileID: 463971500}
   m_Layer: 5
   m_Name: AbilitySlot
   m_TagString: Untagged
@@ -1168,7 +1168,7 @@ RectTransform:
   m_AnchoredPosition: {x: -800, y: -345}
   m_SizeDelta: {x: 200, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &463971499
+--- !u!114 &463971500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1177,11 +1177,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 463971497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e6758549f039ce49bce9a73560932f3, type: 3}
+  m_Script: {fileID: 11500000, guid: ebaa69f32f8ed1e4c946a61dfd59edec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 2
   _image: {fileID: 86068839}
+  _range: 1000
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,9 +39,9 @@ public class FreezeAbility : Ability
             if (collider.GetComponent<Ennemy>())
             {
                 collider.GetComponent<Ennemy>().SetSpeed(0.0f);
-                _activated = true;
             }
         }
+        _activated = true;
         _usable = false;
     }
 

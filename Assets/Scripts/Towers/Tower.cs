@@ -37,6 +37,9 @@ public class Tower : MonoBehaviour
             case GrappleBullet:
                 _munition = MunitionType.GrappleBullet;
                 break;
+            case MineBullet:
+                _munition = MunitionType.MineBullet;
+                break;
         }
         _hasFired = false;
     }
@@ -72,6 +75,9 @@ public class Tower : MonoBehaviour
                     Shoot(_targetList[0]);
                     _hasFired = true;
                 }
+                break;
+            case MunitionType.MineBullet:
+                WaitForTrigger();
                 break;
         }
     }
@@ -112,6 +118,14 @@ public class Tower : MonoBehaviour
         }
     }
 
+    private void WaitForTrigger()
+    {
+        if (_targetList.Count > 0)
+        {
+            Shoot(_targetList[0]);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.gameObject.GetComponent<Ennemy>())
@@ -147,5 +161,6 @@ public enum MunitionType
     NormalBullet,
     Laser,
     FreezeBullet,
-    GrappleBullet
+    GrappleBullet,
+    MineBullet
 }

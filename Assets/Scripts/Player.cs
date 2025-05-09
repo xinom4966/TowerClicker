@@ -75,4 +75,14 @@ public class Player : MonoBehaviour
         _money -= debt;
         UpdateGoldDisplay();
     }
+
+    public int GetMurderAward()
+    {
+        return _murderAward;
+    }
+
+    public void SetMurderAward(int newValue)
+    {
+        _murderAward = newValue;
+    }
 }

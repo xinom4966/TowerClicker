@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    [SerializeField] private Player _player;
-    [SerializeField] private TowerPlacer _placer;
-    [SerializeField] private GameObject _shopGO;
-    private int _playerDebt = 0;
+    [SerializeField] private Player player;
+    [SerializeField] private TowerPlacer placer;
+    [SerializeField] private GameObject shopGO;
+    private int playerDebt = 0;
 
     public void BeginTransaction(GameObject towerBoughtGO)
     {
@@ -14,23 +14,23 @@ public class Shop : MonoBehaviour
         {
             return;
         }
-        if (!_player.CheckPrice(towerBought))
+        if (!player.CheckPrice(towerBought))
         {
             return;
         }
-        _placer.SetTowerPrefab(towerBought.transform.parent.gameObject);
-        _playerDebt = towerBought.GetCost();
-        _shopGO.SetActive(false);
+        placer.SetTowerPrefab(towerBought.transform.parent.gameObject);
+        playerDebt = towerBought.GetCost();
+        shopGO.SetActive(false);
     }
 
     public void EndTransaction()
     {
-        _player.DoTransaction(_playerDebt);
-        _playerDebt = 0;
+        player.DoTransaction(playerDebt);
+        playerDebt = 0;
     }
 
     public void CancelTransaction()
     {
-        _playerDebt = 0;
+        playerDebt = 0;
     }
 }

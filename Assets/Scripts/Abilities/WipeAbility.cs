@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class WipeAbility : Ability
 {
-    [SerializeField] private float _range = 1000;
-    private List<Collider2D> _colliders = new List<Collider2D>();
+    [SerializeField] private float range = 1000;
+    private List<Collider2D> colliders = new List<Collider2D>();
     protected override void Update()
     {
         base.Update();
@@ -13,19 +13,19 @@ public class WipeAbility : Ability
     public override void Execute()
     {
         base.Execute();
-        if (!_usable)
+        if (!usable)
         {
             return;
         }
-        ContactFilter2D _contactFilter = new ContactFilter2D();
-        int _hitbox = Physics2D.OverlapCircle(Vector2.zero, _range, _contactFilter,_colliders);
-        foreach(Collider2D collider in _colliders)
+        ContactFilter2D contactFilter = new ContactFilter2D();
+        int hitbox = Physics2D.OverlapCircle(Vector2.zero, range, contactFilter,colliders);
+        foreach(Collider2D collider in colliders)
         {
-            if (collider.GetComponent<Ennemy>())
+            if (collider.GetComponent<Enemy>())
             {
-                collider.GetComponent<Ennemy>().TakeDamage(int.MaxValue);
+                collider.GetComponent<Enemy>().TakeDamage(int.MaxValue);
             }
         }
-        _usable = false;
+        usable = false;
     }
 }

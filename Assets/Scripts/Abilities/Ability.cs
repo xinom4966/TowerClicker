@@ -3,21 +3,21 @@ using UnityEngine.UI;
 
 public class Ability : MonoBehaviour
 {
-    [SerializeField] private float _cooldown;
-    [SerializeField] private Image _image;
-    protected bool _usable = true;
-    private float _timer = 0.0f;
+    [SerializeField] private float cooldown;
+    [SerializeField] private Image image;
+    protected bool usable = true;
+    private float timer = 0.0f;
 
     protected virtual void Update()
     {
-        if (!_usable)
+        if (!usable)
         {
-            _timer += Time.deltaTime;
-            CoolDownFeedBack(_timer/_cooldown);
-            if (_timer >= _cooldown)
+            timer += Time.deltaTime;
+            CoolDownFeedBack(timer/cooldown);
+            if (timer >= cooldown)
             {
-                _usable = true;
-                _timer = 0.0f;
+                usable = true;
+                timer = 0.0f;
             }
         }
     }
@@ -29,7 +29,7 @@ public class Ability : MonoBehaviour
 
     protected void CoolDownFeedBack(float ratio)
     {
-        _image.fillAmount = ratio;
+        image.fillAmount = ratio;
     }
 
     protected void HoverFeedBack()

@@ -3,24 +3,25 @@ using UnityEngine.UI;
 
 public class LoadingCircle : MonoBehaviour
 {
-    private float _maxTimer = 0f;
-    private float _currentTimer;
-    private Player _parent;
-    [SerializeField] private Image _fill;
-    [SerializeField] private Gradient _gradient;
+    private float maxTimer = 0f;
+    private float currentTimer;
+    private Player parent;
+    private float ratio = 0f;
+    [SerializeField] private Image fill;
+    [SerializeField] private Gradient gradient;
 
     private void Update()
     {
-        if (_maxTimer == 0f)
+        if (maxTimer == 0f)
         {
             return;
         }
-        _currentTimer = _parent.GetCoolDown();
-        float ratio = _currentTimer / _maxTimer;
-        _fill.fillAmount = ratio;
-        _fill.color = _gradient.Evaluate(ratio);
+        currentTimer = parent.GetCoolDown();
+        ratio = currentTimer / maxTimer;
+        fill.fillAmount = ratio;
+        fill.color = gradient.Evaluate(ratio);
         transform.position = Input.mousePosition;
-        if (_currentTimer <= 0)
+        if (currentTimer <= 0)
         {
             gameObject.SetActive(false);
         }
@@ -28,11 +29,11 @@ public class LoadingCircle : MonoBehaviour
 
     public void SetMaxTimer(float value)
     {
-        _maxTimer = value;
+        maxTimer = value;
     }
 
     public void SetParent(Player parent)
     {
-        _parent = parent;
+        this.parent = parent;
     }
 }

@@ -3,24 +3,24 @@ using UnityEngine;
 
 public class GoldFeedBack : MonoBehaviour
 {
-    [SerializeField] private float _lifeSpan;
-    [SerializeField] private RectTransform _rectTransform;
-    [SerializeField] private TextMeshProUGUI _goldText;
-    private float _timer = 0.0f;
+    [SerializeField] private float lifeSpan;
+    [SerializeField] private RectTransform rectTransform;
+    [SerializeField] private TextMeshProUGUI goldText;
+    private float timer = 0.0f;
 
     private void Update()
     {
-        _timer += Time.deltaTime;
-        if (_timer > _lifeSpan)
+        timer += Time.deltaTime;
+        if (timer > lifeSpan)
         {
             Destroy(gameObject);
         }
-        _rectTransform.position += Vector3.up;
+        rectTransform.position += Vector3.up;
     }
 
     public void SetDatas(Vector3 parentPosition, int valueToDisplay)
     {
-        _rectTransform.position = parentPosition;
-        _goldText.text += valueToDisplay + " gold";
+        rectTransform.position = parentPosition;
+        goldText.text += valueToDisplay + " gold";
     }
 }

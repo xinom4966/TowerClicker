@@ -3,77 +3,77 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [SerializeField] private float _fireRate;
-    [SerializeField] private int _damage;
-    [SerializeField] private float _bulletSpeed;
-    [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private int _cost;
-    [SerializeField] private CircleCollider2D _collider;
-    [SerializeField] private float _slowAmmount = 0;
-    private GameObject _instantiatedBullet;
-    private Bullet _bulletScript;
-    private List<Ennemy> _targetList = new List<Ennemy>();
-    private Pool<Bullet> _bulletPool;
-    private float _timer;
-    private MunitionType _munition;
-    private bool _hasFired;
+    [SerializeField] private float fireRate;
+    [SerializeField] private int damage;
+    [SerializeField] private float bulletSpeed;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private int cost;
+    [SerializeField] private CircleCollider2D towerCollider;
+    [SerializeField] private float slowAmmount = 0;
+    private GameObject instantiatedBullet;
+    private Bullet bulletScript;
+    private List<Enemy> targetList = new List<Enemy>();
+    private Pool<Bullet> bulletPool;
+    private float timer;
+    private MunitionType munition;
+    private bool hasFired;
 
     private void Start()
     {
-        _bulletPool = new Pool<Bullet>(CreateBullet, OnGetBullet, OnReleaseBullet, 10);
-        _timer = 0.0f;
-        _bulletScript = _bulletPrefab.GetComponent<Bullet>();
-        switch (_bulletScript)
+        bulletPool = new Pool<Bullet>(CreateBullet, OnGetBullet, OnReleaseBullet, 10);
+        timer = 0.0f;
+        bulletScript = bulletPrefab.GetComponent<Bullet>();
+        switch (bulletScript)
         {
             case NormalBullet:
-                _munition = MunitionType.NormalBullet;
+                munition = MunitionType.NormalBullet;
                 break;
             case LaserBullet:
-                _munition = MunitionType.Laser;
+                munition = MunitionType.Laser;
                 break;
             case FreezeBullet:
-                _munition = MunitionType.FreezeBullet;
+                munition = MunitionType.FreezeBullet;
                 break;
             case GrappleBullet:
-                _munition = MunitionType.GrappleBullet;
+                munition = MunitionType.GrappleBullet;
                 break;
             case MineBullet:
-                _munition = MunitionType.MineBullet;
+                munition = MunitionType.MineBullet;
                 break;
         }
-        _hasFired = false;
+        hasFired = false;
     }
 
     private void Update()
     {
-        switch (_munition)
+        switch (munition)
         {
             case MunitionType.NormalBullet:
-                _timer += Time.deltaTime;
-                if (_timer >= _fireRate)
+                timer += Time.deltaTime;
+                if (timer >= fireRate)
                 {
-                    _timer = 0.0f;
-                    if (_targetList.Count > 0)
+                    timer = 0.0f;
+                    if (targetList.Count > 0)
                     {
-                        Shoot(_targetList[0]);
+                        Shoot(targetList[0]);
                     }
                 }
                 break;
             case MunitionType.Laser:
-                if (!_hasFired && _targetList.Count > 0)
+                if (!hasFired && targetList.Count > 0)
                 {
-                    Shoot(_targetList[0]);
-                    _hasFired = true;
+                    Shoot(targetList[0]);
+                    hasFired = true;
                 }
                 break;
             case MunitionType.FreezeBullet:
                 FreezeEnnemies();
                 break;
             case MunitionType.GrappleBullet:
-                if (!_hasFired && _targetList.Count > 0)
+                if (!hasFired && targetList.Count > 0)
                 {
-                    Shoot(_targetList[0]);
-                    _hasFired = true;
+                    Shoot(targetList[0]);
+                    hasFired = true;
                 }
                 break;
             case MunitionType.MineBullet:
@@ -84,9 +84,9 @@ public class Tower : MonoBehaviour
 
     private Bullet CreateBullet()
     {
-        _instantiatedBullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
-        _bulletScript = _instantiatedBullet.GetComponent<Bullet>();
-        return _bulletScript;
+        instantiatedBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        bulletScript = instantiatedBullet.GetComponent<Bullet>();
+        return bulletScript;
     }
 
     private void OnGetBullet(Bullet bullet)
@@ -98,53 +98,53 @@ public class Tower : MonoBehaviour
     {
         bullet.gameObject.SetActive(false);
         bullet.transform.position = transform.position;
-        _hasFired = false;
+        hasFired = false;
     }
 
-    private void Shoot(Ennemy target)
+    private void Shoot(Enemy target)
     {
-        Bullet bullet = _bulletPool.Get();
-        bullet.SetDatas(target, this, _bulletSpeed, _damage, _collider.radius);
+        Bullet bullet = bulletPool.Get();
+        bullet.SetDatas(target, this, bulletSpeed, damage, towerCollider.radius);
     }
 
     private void FreezeEnnemies()
     {
-        if (_targetList.Count > 0)
+        if (targetList.Count > 0)
         {
-            foreach (Ennemy target in _targetList)
+            foreach (Enemy target in targetList)
             {
-                target.Slow(_slowAmmount);
+                target.Slow(slowAmmount);
             }
         }
     }
 
     private void WaitForTrigger()
     {
-        if (_targetList.Count > 0)
+        if (targetList.Count > 0)
         {
-            Shoot(_targetList[0]);
+            Shoot(targetList[0]);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.GetComponent<Ennemy>())
+        if (!collision.gameObject.GetComponent<Enemy>())
         {
             return;
         }
-        Ennemy newTarget = collision.gameObject.GetComponent<Ennemy>();
-        _targetList.Add(newTarget);
+        Enemy newTarget = collision.gameObject.GetComponent<Enemy>();
+        targetList.Add(newTarget);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.gameObject.GetComponent<Ennemy>())
+        if (!collision.gameObject.GetComponent<Enemy>())
         {
             return;
         }
-        Ennemy targetToRelease = collision.gameObject.GetComponent<Ennemy>();
-        _targetList.Remove(targetToRelease);
-        if (_munition == MunitionType.FreezeBullet)
+        Enemy targetToRelease = collision.gameObject.GetComponent<Enemy>();
+        targetList.Remove(targetToRelease);
+        if (munition == MunitionType.FreezeBullet)
         {
             targetToRelease.ResetSpeed();
         }
@@ -152,7 +152,7 @@ public class Tower : MonoBehaviour
 
     public int GetCost()
     {
-        return _cost;
+        return cost;
     }
 }
 

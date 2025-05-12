@@ -5,24 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _scoreDisplay;
-    private int _lastLevelInd;
-    [SerializeField] private MenuType _menuType;
+    [SerializeField] private TextMeshProUGUI scoreDisplay;
+    private int lastLevelInd;
+    [SerializeField] private MenuType menuType;
 
     private void Start()
     {
         Time.timeScale = 1.0f;
-        if (_menuType == MenuType.LoseMenu)
+        if (menuType == MenuType.LoseMenu)
         {
             List<int> scores = ScoreManager.Instance.GetScores();
             for (int i = 0; i < 10; i++)
             {
                 if (i < scores.Count)
                 {
-                    _scoreDisplay.text += "\n" + scores[i];
+                    scoreDisplay.text += "\n" + scores[i];
                 }
             }
-            _lastLevelInd = ScoreManager.Instance.GetLastRegisteredInd();
+            lastLevelInd = ScoreManager.Instance.GetLastRegisteredInd();
         }
     }
 
@@ -38,7 +38,7 @@ public class Menu : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene(_lastLevelInd);
+        SceneManager.LoadScene(lastLevelInd);
     }
 
     enum MenuType

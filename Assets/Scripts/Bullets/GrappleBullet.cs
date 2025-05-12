@@ -2,84 +2,84 @@ using UnityEngine;
 
 public class GrappleBullet : Bullet
 {
-    [SerializeField] private float _hitRate;
+    [SerializeField] private float hitRate;
     private float distance;
     private Vector3 direction;
-    private float _timer;
-    private GrappleState _state;
+    private float timer;
+    private GrappleState state;
 
     private void Start()
     {
-        _state = GrappleState.Catching;
-        _timer = 0.0f;
+        state = GrappleState.Catching;
+        timer = 0.0f;
     }
 
     private void OnDisable()
     {
-        _state = GrappleState.Catching;
+        state = GrappleState.Catching;
         transform.localScale = Vector3.one;
-        _timer = 0.0f;
+        timer = 0.0f;
     }
 
     private void OnEnable()
     {
-        _state = GrappleState.Catching;
+        state = GrappleState.Catching;
         transform.localScale = Vector3.one;
-        _timer = 0.0f;
+        timer = 0.0f;
     }
 
     private void Update()
     {
-        distance = Vector2.Distance(_target.transform.position, _towerOrigin.transform.position);
-        direction = _target.transform.position - _towerOrigin.transform.position;
+        distance = Vector2.Distance(target.transform.position, towerOrigin.transform.position);
+        direction = target.transform.position - towerOrigin.transform.position;
 
-        if (_target == null || !_target.isActiveAndEnabled || distance > _range + 1)
+        if (target == null || !target.isActiveAndEnabled || distance > range + 1)
         {
-            _pool.Release(this);
+            pool.Release(this);
         }
 
-        if (_state == GrappleState.Catching)
+        if (state == GrappleState.Catching)
         {
-            if (_target.CheckIsGrappled())
+            if (target.CheckIsGrappled())
             {
-                _pool.Release(this);
+                pool.Release(this);
             }
-            transform.localScale = new(Vector2.Lerp(_towerOrigin.transform.position, _target.transform.position, _timer).x, 0.2f, 1);
-            transform.position = _towerOrigin.transform.position + direction * _timer;
-            _timer += Time.deltaTime;
-            if (Vector2.Distance(transform.position + direction/2, _target.transform.position) < 0.1f)
+            transform.localScale = new(Vector2.Lerp(towerOrigin.transform.position, target.transform.position, timer).x, 0.2f, 1);
+            transform.position = towerOrigin.transform.position + direction * timer;
+            timer += Time.deltaTime;
+            if (Vector2.Distance(transform.position + direction/2, target.transform.position) < 0.1f)
             {
-                _state = GrappleState.Fetching;
+                state = GrappleState.Fetching;
             }
         }
 
-        if (_state == GrappleState.Fetching)
+        if (state == GrappleState.Fetching)
         {
-            transform.localScale = new (Vector2.Lerp(_towerOrigin.transform.position, _target.transform.position, _timer).x, 0.2f, 1);
-            transform.position = _towerOrigin.transform.position + direction * _timer;
-            _target.transform.position = transform.position + direction / 2;
-            _target.Grapple();
-            _timer -= Time.deltaTime;
-            if (Vector2.Distance(_towerOrigin.transform.position, transform.position) < 0.2f)
+            transform.localScale = new (Vector2.Lerp(towerOrigin.transform.position, target.transform.position, timer).x, 0.2f, 1);
+            transform.position = towerOrigin.transform.position + direction * timer;
+            target.transform.position = transform.position + direction / 2;
+            target.Grapple();
+            timer -= Time.deltaTime;
+            if (Vector2.Distance(towerOrigin.transform.position, transform.position) < 0.2f)
             {
-                _state = GrappleState.Killing;
+                state = GrappleState.Killing;
                 transform.localScale = Vector3.one;
             }
         }
 
-        if (_state == GrappleState.Killing)
+        if (state == GrappleState.Killing)
         {
-            _target.transform.position = _towerOrigin.transform.position;
-            _timer += Time.deltaTime;
-            if (_timer >= _hitRate)
+            target.transform.position = towerOrigin.transform.position;
+            timer += Time.deltaTime;
+            if (timer >= hitRate)
             {
-                _timer = 0.0f;
-                _target.TakeDamage(_damage);
+                timer = 0.0f;
+                target.TakeDamage(damage);
             }
         }
 
         //Rotation du grappin en fonction de l'ennemi en déplacement
-        float angle = Mathf.Atan2(_target.transform.position.y - transform.position.y, _target.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(target.transform.position.y - transform.position.y, target.transform.position.x - transform.position.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 

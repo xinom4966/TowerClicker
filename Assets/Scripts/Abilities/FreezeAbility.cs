@@ -3,21 +3,23 @@ using UnityEngine;
 
 public class FreezeAbility : Ability
 {
-    [SerializeField] private float _range = 1000;
-    [SerializeField] private float _duration = 2;
-    private List<Collider2D> _colliders = new List<Collider2D>();
-    private float _timerTS = 0.0f;
-    private bool _activated = false;
+    [SerializeField] private float range = 1000;
+    [SerializeField] private float duration = 2;
+    private List<Collider2D> colliders = new List<Collider2D>();
+    private float timerTS = 0.0f;
+    private bool activated = false;
+    private ContactFilter2D contactFilter = new ContactFilter2D();
+    private int hitbox = 0;
 
     protected override void Update()
     {
-        if (_activated)
+        if (activated)
         {
-            _timerTS += Time.deltaTime;
-            if (_timerTS >= _duration)
+            timerTS += Time.deltaTime;
+            if (timerTS >= duration)
             {
-                _activated = false;
-                _timerTS = 0.0f;
+                activated = false;
+                timerTS = 0.0f;
                 RestartTime();
             }
             return;
@@ -28,32 +30,30 @@ public class FreezeAbility : Ability
     public override void Execute()
     {
         base.Execute();
-        if (!_usable || _activated)
+        if (!usable || activated)
         {
             return;
         }
-        ContactFilter2D _contactFilter = new ContactFilter2D();
-        int _hitbox = Physics2D.OverlapCircle(Vector2.zero, _range, _contactFilter, _colliders);
-        foreach (Collider2D collider in _colliders)
+        hitbox = Physics2D.OverlapCircle(Vector2.zero, range, contactFilter, colliders);
+        foreach (Collider2D collider in colliders)
         {
-            if (collider.GetComponent<Ennemy>())
+            if (collider.GetComponent<Enemy>())
             {
-                collider.GetComponent<Ennemy>().SetSpeed(0.0f);
+                collider.GetComponent<Enemy>().SetSpeed(0.0f);
             }
         }
-        _activated = true;
-        _usable = false;
+        activated = true;
+        usable = false;
     }
 
     private void RestartTime()
     {
-        ContactFilter2D _contactFilter = new ContactFilter2D();
-        int _hitbox = Physics2D.OverlapCircle(Vector2.zero, _range, _contactFilter, _colliders);
-        foreach (Collider2D collider in _colliders)
+        hitbox = Physics2D.OverlapCircle(Vector2.zero, range, contactFilter, colliders);
+        foreach (Collider2D collider in colliders)
         {
-            if (collider.GetComponent<Ennemy>())
+            if (collider.GetComponent<Enemy>())
             {
-                collider.GetComponent<Ennemy>().ResetSpeed();
+                collider.GetComponent<Enemy>().ResetSpeed();
             }
         }
     }

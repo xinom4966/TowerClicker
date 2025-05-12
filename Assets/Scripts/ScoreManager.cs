@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] private int _levelsCount;
-    private List<List<int>> _scoreBoard = new List<List<int>>();
-    private int _lastRegisteredInd = 0;
+    [SerializeField] private int levelsCount;
+    private List<List<int>> scoreBoard = new List<List<int>>();
+    private int lastRegisteredInd = 0;
     public static ScoreManager Instance { get; private set; }
 
     private void Awake()
@@ -21,31 +21,31 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i <= _levelsCount; i++)
+        for (int i = 0; i <= levelsCount; i++)
         {
-            _scoreBoard.Add(new List<int>());
+            scoreBoard.Add(new List<int>());
         }
     }
 
     public void AddScoreToBoard(int score, int levelInd)
     {
-        if (levelInd > _scoreBoard.Count)
+        if (levelInd > scoreBoard.Count)
         {
             return;
         }
-        _scoreBoard[levelInd].Add(score);
-        _scoreBoard[levelInd].Sort();
-        _scoreBoard[levelInd].Reverse();
-        _lastRegisteredInd = levelInd;
+        scoreBoard[levelInd].Add(score);
+        scoreBoard[levelInd].Sort();
+        scoreBoard[levelInd].Reverse();
+        lastRegisteredInd = levelInd;
     }
 
     public List<int> GetScores()
     {
-        return _scoreBoard[_lastRegisteredInd];
+        return scoreBoard[lastRegisteredInd];
     }
 
     public int GetLastRegisteredInd()
     {
-        return _lastRegisteredInd;
+        return lastRegisteredInd;
     }
 }

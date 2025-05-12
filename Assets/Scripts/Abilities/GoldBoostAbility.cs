@@ -2,22 +2,22 @@ using UnityEngine;
 
 public class GoldBoostAbility : Ability
 {
-    [SerializeField] private Player _player;
-    [SerializeField] private float _duration = 2;
-    [SerializeField] private float _goldMultiplier = 1.5f;
-    private int _baseValue;
-    private float _timerGB = 0.0f;
-    private bool _activated = false;
+    [SerializeField] private Player player;
+    [SerializeField] private float duration = 2;
+    [SerializeField] private float goldMultiplier = 1.5f;
+    private int baseValue;
+    private float timerGB = 0.0f;
+    private bool activated = false;
 
     protected override void Update()
     {
-        if (_activated)
+        if (activated)
         {
-            _timerGB += Time.deltaTime;
-            if (_timerGB >= _duration)
+            timerGB += Time.deltaTime;
+            if (timerGB >= duration)
             {
-                _activated = false;
-                _timerGB = 0.0f;
+                activated = false;
+                timerGB = 0.0f;
                 CancelGoldBoost();
             }
             return;
@@ -28,18 +28,18 @@ public class GoldBoostAbility : Ability
     public override void Execute()
     {
         base.Execute();
-        if (!_usable || _activated)
+        if (!usable || activated)
         {
             return;
         }
-        _baseValue = _player.GetMurderAward();
-        _player.SetMurderAward(Mathf.RoundToInt(_baseValue * _goldMultiplier));
-        _activated = true;
-        _usable = false;
+        baseValue = player.GetMurderAward();
+        player.SetMurderAward(Mathf.RoundToInt(baseValue * goldMultiplier));
+        activated = true;
+        usable = false;
     }
 
     private void CancelGoldBoost()
     {
-        _player.SetMurderAward(_baseValue);
+        player.SetMurderAward(baseValue);
     }
 }

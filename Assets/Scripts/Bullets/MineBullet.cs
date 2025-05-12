@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MineBullet : Bullet
 {
-    private List<Collider2D> _colliders;
+    private List<Collider2D> colliders;
     private void Start()
     {
         Explode();
@@ -11,15 +11,15 @@ public class MineBullet : Bullet
 
     private void Explode()
     {
-        ContactFilter2D _contactFilter = new ContactFilter2D();
-        int _hitbox = Physics2D.OverlapCircle(Vector2.zero, _range, _contactFilter, _colliders);
-        foreach (Collider2D collider in _colliders)
+        ContactFilter2D contactFilter = new ContactFilter2D();
+        int hitbox = Physics2D.OverlapCircle(Vector2.zero, range, contactFilter, colliders);
+        foreach (Collider2D collider in colliders)
         {
-            if (collider.GetComponent<Ennemy>())
+            if (collider.GetComponent<Enemy>())
             {
-                collider.GetComponent<Ennemy>().TakeDamage(_damage);
+                collider.GetComponent<Enemy>().TakeDamage(damage);
             }
         }
-        _pool.Release(this);
+        pool.Release(this);
     }
 }

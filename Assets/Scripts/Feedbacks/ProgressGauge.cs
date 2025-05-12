@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class ProgressGauge : MonoBehaviour
 {
-    [SerializeField] private Image _fill;
-    [SerializeField] private Gradient _gradient;
-    [SerializeField] private TextMeshProUGUI _speedUpWarning;
+    [SerializeField] private Image fill;
+    [SerializeField] private Gradient gradient;
+    [SerializeField] private TextMeshProUGUI speedUpWarning;
 
     public void SetFillAmmount(float ratio)
     {
-        _fill.fillAmount = ratio;
-        _fill.color = _gradient.Evaluate(ratio);
-        if (_fill.fillAmount == 1)
+        fill.fillAmount = ratio;
+        fill.color = gradient.Evaluate(ratio);
+        if (fill.fillAmount == 1)
         {
-            _speedUpWarning.gameObject.SetActive(true);
+            speedUpWarning.gameObject.SetActive(true);
             StartCoroutine(WarningFeedBack());
         }
     }
@@ -25,7 +25,7 @@ public class ProgressGauge : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             yield return new WaitForSeconds(0.5f);
-            _speedUpWarning.gameObject.SetActive(!_speedUpWarning.gameObject.activeSelf);
+            speedUpWarning.gameObject.SetActive(!speedUpWarning.gameObject.activeSelf);
         }
     }
 }

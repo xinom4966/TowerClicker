@@ -4,38 +4,38 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private int _levelNumber;
-    [SerializeField] private int _numberToKillBeforeSpeedUp;
-    [SerializeField] private UnityEvent _SpeedUpEvent;
-    [SerializeField] private TextMeshProUGUI _scoreDisplay;
-    [SerializeField] private ProgressGauge _gauge;
-    private int _counter = 0;
-    private int _score = 0;
-    private bool _isFastForward = false;
+    [SerializeField] private int levelNumber;
+    [SerializeField] private int numberToKillBeforeSpeedUp;
+    [SerializeField] private UnityEvent SpeedUpEvent;
+    [SerializeField] private TextMeshProUGUI scoreDisplay;
+    [SerializeField] private ProgressGauge gauge;
+    private int counter = 0;
+    private int score = 0;
+    private bool isFastForward = false;
 
-    public void OnEnnemyKilled()
+    public void OnEnemyKilled()
     {
-        _counter++;
-        _score++;
-        _gauge.SetFillAmmount((float)_counter / (float)_numberToKillBeforeSpeedUp);
-        if (_counter >= _numberToKillBeforeSpeedUp)
+        counter++;
+        score++;
+        gauge.SetFillAmmount((float)counter / (float)numberToKillBeforeSpeedUp);
+        if (counter >= numberToKillBeforeSpeedUp)
         {
-            _SpeedUpEvent.Invoke();
-            _counter = 0;
-            _numberToKillBeforeSpeedUp += 5;
+            SpeedUpEvent.Invoke();
+            counter = 0;
+            numberToKillBeforeSpeedUp += 5;
         }
-        _scoreDisplay.text = "score : " + _score;
+        scoreDisplay.text = "score : " + score;
     }
 
     public void OnLose()
     {
-        ScoreManager.Instance.AddScoreToBoard(_score, _levelNumber);
+        ScoreManager.Instance.AddScoreToBoard(score, levelNumber);
     }
 
     public void FastForward()
     {
-        _isFastForward = !_isFastForward;
-        if (_isFastForward)
+        isFastForward = !isFastForward;
+        if (isFastForward)
         {
             Time.timeScale *= 3;
         }

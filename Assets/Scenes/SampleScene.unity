@@ -206,13 +206,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1243891504}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BeginTransaction
+      - m_Target: {fileID: 1243891503}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: SetTowerPrefab
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 5949866564364351031, guid: 6b8d147a66f3ad54ea7bb888400b35ec, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 432397749}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -572,11 +584,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5fc5cfd79f96248a2e7b20b093bbce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: 2
-  _image: {fileID: 2004990102}
-  _player: {fileID: 270326037}
-  _duration: 2
-  _goldMultiplier: 2
+  cooldown: 2
+  image: {fileID: 2004990102}
+  player: {fileID: 270326037}
+  duration: 2
+  goldMultiplier: 1.5
 --- !u!1 &190632727
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,10 +638,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcee931e0db8318488e9bd099d18903f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: 2
-  _image: {fileID: 339387431}
-  _range: 1000
-  _duration: 2
+  cooldown: 2
+  image: {fileID: 339387431}
+  range: 1000
+  duration: 2
 --- !u!1 &228797435
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,10 +782,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba28daf810564f84db4d9b862325c5aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clickCooldown: 1
-  _loadingCircle: {fileID: 1356429011}
-  _murderAward: 5
-  _goldDisplay: {fileID: 1203632185}
+  clickCooldown: 1
+  loadingCircle: {fileID: 1356429011}
+  murderAward: 5
+  goldDisplay: {fileID: 1203632185}
 --- !u!4 &270326038
 Transform:
   m_ObjectHideFlags: 0
@@ -1422,9 +1434,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebaa69f32f8ed1e4c946a61dfd59edec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: 2
-  _image: {fileID: 86068839}
-  _range: 1000
+  cooldown: 2
+  image: {fileID: 86068839}
+  range: 1000
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1604,8 +1616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c0bdd1235fdd644abba1966859acd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fill: {fileID: 993388680}
-  _gradient:
+  fill: {fileID: 993388680}
+  gradient:
     serializedVersion: 2
     key0: {r: 0, g: 1, b: 0, a: 1}
     key1: {r: 1, g: 0, b: 0, a: 1}
@@ -1635,7 +1647,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  _speedUpWarning: {fileID: 1031134748}
+  speedUpWarning: {fileID: 1031134748}
 --- !u!114 &993388680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2557,7 +2569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674ac136ceeb4a042914539145b85c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onTowerPlaced:
+  onTowerPlaced:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1243891504}
@@ -2572,7 +2584,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _onPlacementCanceled:
+  onPlacementCanceled:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1243891504}
@@ -2587,7 +2599,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _goldFeedbackPrefab: {fileID: 5814682660656758562, guid: 47152b054fa92a14ca68ddba60d731ea, type: 3}
+  goldFeedbackPrefab: {fileID: 5814682660656758562, guid: 47152b054fa92a14ca68ddba60d731ea, type: 3}
 --- !u!114 &1243891504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2600,9 +2612,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251e8e886976e3a4492a31e64f93f4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 270326037}
-  _placer: {fileID: 1243891503}
-  _shopGO: {fileID: 432397749}
+  player: {fileID: 270326037}
+  placer: {fileID: 1243891503}
+  shopGO: {fileID: 1243891501}
 --- !u!1 &1246926741
 GameObject:
   m_ObjectHideFlags: 0
@@ -2800,13 +2812,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1243891504}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BeginTransaction
+      - m_Target: {fileID: 1243891503}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: SetTowerPrefab
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 5949866564364351031, guid: 476d4cfb4f824cc4997eb3bbfe49b66b, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 432397749}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3034,11 +3058,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e82d25f6bcc554a99919f05531c394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fill: {fileID: 1356429012}
-  _gradient:
+  fill: {fileID: 1356429012}
+  gradient:
     serializedVersion: 2
-    key0: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
-    key1: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 0.45490196, g: 0.45490196, b: 0.45490196, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -3187,13 +3211,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1243891504}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BeginTransaction
+      - m_Target: {fileID: 1243891503}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: SetTowerPrefab
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 5949866564364351031, guid: ae6f756d418e3064ba931d2c7863a65d, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 432397749}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4523,13 +4559,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1243891504}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BeginTransaction
+      - m_Target: {fileID: 1243891503}
+        m_TargetAssemblyTypeName: TowerPlacer, Assembly-CSharp
+        m_MethodName: SetTowerPrefab
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 5949866564364351031, guid: dace9d9c1df7e4b428fde8b8647cb242, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 432397749}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4935,7 +4983,7 @@ GameObject:
   - component: {fileID: 1903080227}
   - component: {fileID: 1903080228}
   m_Layer: 0
-  m_Name: EnnemySpawner
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4968,23 +5016,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63466188fcf2b64ebae3e7d0487ca54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnRate: 5
-  _wayPoints:
+  spawnRate: 5
+  wayPoints:
   - {fileID: 1517207567}
   - {fileID: 1148619016}
   - {fileID: 1152523928}
   - {fileID: 1476714896}
   - {fileID: 1112333281}
-  _ennemyPrefab: {fileID: 6386116509033551400, guid: 3a2445be852fd1642a7dbe83b1966d7c, type: 3}
-  _ennemySpeed: 1
-  _ennemyAcceleration: 1.5
-  _spawnAcceleration: 0.75
-  _onKilledEvent:
+  enemyPrefab: {fileID: 6386116509033551400, guid: 3a2445be852fd1642a7dbe83b1966d7c, type: 3}
+  enemySpeed: 1
+  enemyAcceleration: 1.5
+  spawnAcceleration: 0.75
+  onKilledEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2069768895}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnEnnemyKilled
+        m_MethodName: OnEnemyKilled
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5006,7 +5054,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _lossEvent:
+  lossEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2069768895}
@@ -5021,9 +5069,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _ennemySpeedCap: 7.5
-  _spawnSpeedCap: 0.25
-  _EnnemyHealth: 4
+  enemySpeedCap: 7.5
+  spawnSpeedCap: 0.25
+  enemyHealth: 4
 --- !u!1 &2004990099
 GameObject:
   m_ObjectHideFlags: 0
@@ -5320,13 +5368,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b9d6edc347827428bbe17a1f4f9d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelNumber: 0
-  _numberToKillBeforeSpeedUp: 5
-  _SpeedUpEvent:
+  levelNumber: 0
+  numberToKillBeforeSpeedUp: 5
+  SpeedUpEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1903080228}
-        m_TargetAssemblyTypeName: EnnemySpawner, Assembly-CSharp
+        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
         m_MethodName: SpeedUp
         m_Mode: 1
         m_Arguments:
@@ -5337,8 +5385,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _scoreDisplay: {fileID: 2026697069}
-  _gauge: {fileID: 993388679}
+  scoreDisplay: {fileID: 2026697069}
+  gauge: {fileID: 993388679}
 --- !u!4 &2069768896
 Transform:
   m_ObjectHideFlags: 0

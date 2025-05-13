@@ -115,9 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef0a8fd9390fa14381b1cc3efab8638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifeSpan: 1
-  _rectTransform: {fileID: 6432277312916972850}
-  _goldText: {fileID: 1714629743153012884}
+  lifeSpan: 1
+  rectTransform: {fileID: 6432277312916972850}
+  goldText: {fileID: 1714629743153012884}
 --- !u!1 &6089134446314247406
 GameObject:
   m_ObjectHideFlags: 0

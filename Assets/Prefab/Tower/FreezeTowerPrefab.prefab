@@ -185,10 +185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 839ac798c3a277e42b80ea8d4f6c8293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 8495216797369354927}
-  _validColor: {r: 0, g: 1, b: 0, a: 0.5019608}
-  _invalidColor: {r: 1, g: 0, b: 0, a: 0.5019608}
-  _towerRange: {fileID: 7437801717235082665}
+  spriteRenderer: {fileID: 5139837116974813374}
+  validColor: {r: 0, g: 1, b: 0, a: 0.5019608}
+  invalidColor: {r: 1, g: 0, b: 0, a: 0.5019608}
+  towerRange: {fileID: 7437801717235082665}
   hasValidPlacement: 0
   isFixed: 0
 --- !u!58 &6144347833306567066
@@ -299,13 +299,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a4cd2033df08046919190c2428bbed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireRate: 2
-  _damage: 1
-  _bulletSpeed: 10
-  _bulletPrefab: {fileID: 3322055689744000115, guid: 7924d88af115a5b45870207f5a10c413, type: 3}
-  _cost: 30
-  _collider: {fileID: 6189542398383918944}
-  _slowAmmount: 0.5
+  fireRate: 2
+  damage: 1
+  bulletSpeed: 10
+  bulletPrefab: {fileID: 3322055689744000115, guid: 7924d88af115a5b45870207f5a10c413, type: 3}
+  cost: 30
+  towerCollider: {fileID: 6189542398383918944}
+  slowAmmount: 0.5
 --- !u!58 &6189542398383918944
 CircleCollider2D:
   m_ObjectHideFlags: 0

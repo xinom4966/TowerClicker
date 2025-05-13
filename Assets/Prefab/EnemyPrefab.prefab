@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 4447397909483710601}
   - component: {fileID: 736360878188402797}
   m_Layer: 0
-  m_Name: EnnemyPrefab
+  m_Name: EnemyPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -408,28 +408,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 6386116509033551400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f23398ddf1057554384d44ae37824136, type: 3}
+  m_Script: {fileID: 11500000, guid: bdc7165ba36b66a4a9ba7709377f55d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _BasehealthPoints: 4
-  _spriteRenderer: {fileID: 5021162945075072275}
-  _damageColor: {r: 1, g: 0, b: 0, a: 1}
-  _frozenColor: {r: 0, g: 0.5, b: 1, a: 1}
-  _goldVisualPrefab: {fileID: 5814682660656758562, guid: c68440a2494db5b4eb9920ae878eddfb, type: 3}
-  _healthbar: {fileID: 5038356069339590065}
-  _hpGradient:
+  baseHealthPoints: 4
+  spriteRenderer: {fileID: 5021162945075072275}
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  frozenColor: {r: 0, g: 0, b: 1, a: 1}
+  goldVisualPrefab: {fileID: 5814682660656758562, guid: c68440a2494db5b4eb9920ae878eddfb, type: 3}
+  healthbar: {fileID: 5038356069339590065}
+  hpGradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 0.64213145, b: 0.073584795, a: 1}
-    key2: {r: 0, g: 1, b: 0, a: 0}
+    key1: {r: 0, g: 1, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 32922
-    ctime2: 65535
+    ctime1: 65535
+    ctime2: 0
     ctime3: 0
     ctime4: 0
     ctime5: 0
@@ -445,9 +445,9 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 3
+    m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  _onLoseEvent:
+  onLoseEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!61 &736360878188402797

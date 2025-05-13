@@ -97,5 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5fa2b092b73791488dd5da210479403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 3147358866878736626}
-  _hitRate: 0.25
+  laserRenderer: {fileID: 3147358866878736626}
+  hitRate: 0.25

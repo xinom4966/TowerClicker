@@ -44,7 +44,7 @@ public class TowerPlacer : MonoBehaviour
                     toBuild = null;
                     onTowerPlaced.Invoke();
                     goldFeedback = Instantiate(goldFeedbackPrefab);
-                    goldFeedback.GetComponentInChildren<GoldFeedBack>().SetDatas(Camera.main.WorldToScreenPoint(handler.transform.position), handler.GetComponentInChildren<Tower>().GetCost());
+                    goldFeedback.GetComponentInChildren<GoldFeedBack>(true).SetDatas(Camera.main.WorldToScreenPoint(handler.transform.position), handler.GetComponentInChildren<Tower>(true).GetCost());
                 }
             }
         }

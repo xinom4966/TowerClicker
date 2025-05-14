@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8134606662b5b4d4894546b4fb1d4f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelsCount: 3
+  levelsCount: 3

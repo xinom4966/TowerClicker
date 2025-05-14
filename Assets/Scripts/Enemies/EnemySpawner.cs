@@ -39,6 +39,7 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject enemyGO = Instantiate(enemyPrefab);
         Enemy enemy = enemyGO.GetComponent<Enemy>();
+        enemy.SetHP(enemyHealth);
         enemy.SetWayPoints(wayPoints);
         enemy.SetSpeed(enemySpeed);
         enemy.onLoseEvent.AddListener(InvokeLossEvent);

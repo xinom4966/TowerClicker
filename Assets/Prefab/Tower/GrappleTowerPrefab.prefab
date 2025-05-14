@@ -188,7 +188,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8495216797369354927}
   validColor: {r: 0, g: 1, b: 0, a: 0.5019608}
   invalidColor: {r: 1, g: 0, b: 0, a: 0.5019608}
-  towerRange: {fileID: 2239187250977108991}
+  towerRange: {fileID: 7437801717235082665}
   hasValidPlacement: 0
   isFixed: 0
 --- !u!58 &6144347833306567066

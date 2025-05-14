@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6144347833306567066}
   - component: {fileID: 8548049153958722090}
   m_Layer: 0
-  m_Name: MineTower
+  m_Name: MineTowerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

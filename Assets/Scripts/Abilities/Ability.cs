@@ -5,7 +5,7 @@ public class Ability : MonoBehaviour
 {
     [SerializeField] private float cooldown;
     [SerializeField] private Image image;
-    protected bool usable = true;
+    protected bool usable = false;
     private float timer = 0.0f;
 
     protected virtual void Update()

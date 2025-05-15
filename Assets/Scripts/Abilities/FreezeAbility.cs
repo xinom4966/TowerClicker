@@ -48,7 +48,6 @@ public class FreezeAbility : Ability
 
     private void RestartTime()
     {
-        hitbox = Physics2D.OverlapCircle(Vector2.zero, range, contactFilter, colliders);
         foreach (Collider2D collider in colliders)
         {
             if (collider.GetComponent<Enemy>())

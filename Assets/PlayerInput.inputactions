@@ -2,13 +2,40 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "New action map",
+            "name": "Player action map",
             "id": "1a51d16f-e0b6-4003-bdfb-897a9acd21c7",
             "actions": [
                 {
                     "name": "LeftClick",
                     "type": "Button",
                     "id": "e7714c8e-956f-498f-9c70-54e7f646ec15",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ability1",
+                    "type": "Button",
+                    "id": "d714ba5d-4b3c-416b-80ca-4bcefd95e772",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ability2",
+                    "type": "Button",
+                    "id": "ec73c76c-230a-4fc3-a3f0-a9de9f63e713",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ability3",
+                    "type": "Button",
+                    "id": "a9b7c7ae-bb20-4142-b2eb-b1fd642fd05f",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -24,6 +51,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c4dc312-74dd-4e8a-8551-2207dd0ada58",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da70f24e-a8fc-4f0c-ac96-cd1190c187f6",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d7a646e-0a15-4abc-971d-425d6fad040f",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

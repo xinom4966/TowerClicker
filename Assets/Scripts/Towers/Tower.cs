@@ -123,7 +123,7 @@ public class Tower : MonoBehaviour
         if (targetList.Count > 0)
         {
             Shoot(targetList[0]);
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 

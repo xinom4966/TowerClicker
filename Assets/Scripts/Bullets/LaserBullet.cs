@@ -3,6 +3,7 @@ using UnityEngine;
 public class LaserBullet : Bullet
 {
     [SerializeField] private SpriteRenderer laserRenderer;
+    [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private float hitRate;
     private float distance;
     private Vector3 direction;
@@ -10,7 +11,7 @@ public class LaserBullet : Bullet
 
     private void Update()
     {
-        distance = Vector2.Distance(target.transform.position, towerOrigin.transform.position);
+        /*distance = Vector2.Distance(target.transform.position, towerOrigin.transform.position);
         direction = target.transform.position - towerOrigin.transform.position;
         transform.position = towerOrigin.transform.position + direction / 2;
 
@@ -19,7 +20,11 @@ public class LaserBullet : Bullet
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
         //Rescale en fonction de la distance entre la tour d'origine et l'ennemi visé
-        transform.localScale = new(distance / towerOrigin.transform.localScale.x, 0.2f, 1);
+        transform.localScale = new(distance / towerOrigin.transform.localScale.x, 0.2f, 1);*/
+
+        distance = Vector2.Distance(target.transform.position, towerOrigin.transform.position);
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, target.transform.position);
 
         //Fait des dégats toutes les n secondes (n étant _hitRate)
         timer += Time.deltaTime;

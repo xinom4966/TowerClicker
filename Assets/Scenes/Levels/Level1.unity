@@ -533,7 +533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickCooldown: 1
   loadingCircle: {fileID: 1356429011}
-  murderAward: 5
+  murderAward: 50
   goldDisplay: {fileID: 1203632185}
 --- !u!4 &270326038
 Transform:
@@ -1320,6 +1320,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 228797439}
     m_Modifications:
+    - target: {fileID: 297603281741016878, guid: 87685af456e2260489a235874d920149, type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1903080228}
     - target: {fileID: 3329336937191921594, guid: 87685af456e2260489a235874d920149, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

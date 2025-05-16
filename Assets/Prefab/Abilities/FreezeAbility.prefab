@@ -320,3 +320,4 @@ MonoBehaviour:
   image: {fileID: 9127971464093503669}
   range: 1000
   duration: 10
+  spawner: {fileID: 0}

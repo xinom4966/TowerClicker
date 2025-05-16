@@ -5,6 +5,7 @@ public class FreezeAbility : Ability
 {
     [SerializeField] private float range = 1000;
     [SerializeField] private float duration = 2;
+    [SerializeField] private EnemySpawner spawner;
     private List<Collider2D> colliders = new List<Collider2D>();
     private float timerTS = 0.0f;
     private bool activated = false;
@@ -42,6 +43,7 @@ public class FreezeAbility : Ability
                 collider.GetComponent<Enemy>().SetSpeed(0.0f);
             }
         }
+        spawner.FreezeSpawner();
         activated = true;
         usable = false;
     }
@@ -55,5 +57,6 @@ public class FreezeAbility : Ability
                 collider.GetComponent<Enemy>().ResetSpeed();
             }
         }
+        spawner.UnfreezeSpawner();
     }
 }

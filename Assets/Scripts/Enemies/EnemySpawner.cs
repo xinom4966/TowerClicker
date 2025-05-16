@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int enemyHealth;
     private float timer;
     private Pool<Enemy> enemyPool;
+    private bool isFrozen = false;
 
     private void Start()
     {
@@ -26,6 +27,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
+        if (isFrozen)
+        {
+            return;
+        }
         timer += Time.deltaTime;
         if (timer >= spawnRate)
         {
@@ -77,5 +82,15 @@ public class EnemySpawner : MonoBehaviour
     private void InvokeLossEvent()
     {
         lossEvent.Invoke();
+    }
+
+    public void FreezeSpawner()
+    {
+        isFrozen = true;
+    }
+
+    public void UnfreezeSpawner()
+    {
+        isFrozen = false;
     }
 }

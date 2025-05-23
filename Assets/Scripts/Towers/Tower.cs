@@ -120,10 +120,10 @@ public class Tower : MonoBehaviour
 
     private void WaitForTrigger()
     {
-        if (targetList.Count > 0)
+        if (targetList.Count > 0 && !hasFired)
         {
             Shoot(targetList[0]);
-            Destroy(transform.parent.gameObject);
+            hasFired = true;
         }
     }
 
